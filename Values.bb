@@ -105,10 +105,22 @@ Global optFX=2,optGore=1,optLimbs=1
 Global optCrowdAnim=1,optVideo=1
 Global optGhost=2,optAtmos=1
 ;keys & buttons
+Const PAD_AXIS_Y_NEG=101,PAD_AXIS_Y_POS=102
+Const PAD_AXIS_X_NEG=103,PAD_AXIS_X_POS=104
 Global keyAttack=30,keyGrab=31,keySwitch=29
 Global keyRun=44,keyPick=45,keyTaunt=57
-Global buttAttack=4,buttGrab=5,buttSwitch=3
-Global buttRun=1,buttPick=2,buttTaunt=6
+Global keyMoveUp=200,keyMoveDown=208,keyMoveLeft=203,keyMoveRight=205
+Global buttAttack=14,buttGrab=15,buttSwitch=8
+Global buttRun=12,buttPick=13,buttTaunt=9
+Global padUp=PAD_AXIS_Y_POS,padDown=PAD_AXIS_Y_NEG
+Global padLeft=PAD_AXIS_X_NEG,padRight=PAD_AXIS_X_POS
+
+Function SetGamepadDefaults()
+ buttAttack=14 : buttGrab=15 : buttSwitch=8
+ buttRun=12 : buttPick=13 : buttTaunt=9
+ padUp=PAD_AXIS_Y_POS : padDown=PAD_AXIS_Y_NEG
+ padLeft=PAD_AXIS_X_NEG : padRight=PAD_AXIS_X_POS
+End Function
 
 ;//////////////////////////////////////////////////////
 ;------------------- MATCHES --------------------------
@@ -386,19 +398,19 @@ Global gCamera,gTape,gVersus,gInjury
 Global gReport,gMagazine,gNewspaper,gPhoto
 ;LOADING PROCESS
 Function LoadImages()
- ;regular fonts
- font(0)=LoadFont("Verdana",12,0,0,0)
- font(1)=LoadFont("Verdana",15,1,0,0)
- font(2)=LoadFont("Verdana",20,0,0,0)
- font(3)=LoadFont("Verdana",28,0,0,0)
- font(4)=LoadFont("Verdana",36,0,0,0)
- font(5)=LoadFont("Verdana",36,0,1,0)
- font(6)=LoadFont("Verdana",48,0,0,0)
+ ;regular fonts (+10 font size for HD screens)
+ font(0)=LoadFont("Verdana",20,0,0,0)
+ font(1)=LoadFont("Verdana",30,1,0,0)
+ font(2)=LoadFont("Verdana",30,0,0,0)
+ font(3)=LoadFont("Verdana",35,0,0,0)
+ font(4)=LoadFont("Verdana",46,0,0,0)
+ font(5)=LoadFont("Verdana",46,0,1,0)
+ font(6)=LoadFont("Verdana",58,0,0,0)
  ;news fonts
- fontNews(0)=LoadFont("Times New Roman",12,1,0,0)
- fontNews(1)=LoadFont("Times New Roman",15,1,0,0)
- fontNews(2)=LoadFont("Times New Roman",20,1,0,0)
- fontNews(3)=LoadFont("Times New Roman",45,1,0,0)
+ fontNews(0)=LoadFont("Times New Roman",22,1,0,0)
+ fontNews(1)=LoadFont("Times New Roman",25,1,0,0)
+ fontNews(2)=LoadFont("Times New Roman",30,1,0,0)
+ fontNews(3)=LoadFont("Times New Roman",55,0,0)
  ;game logos
  gTile=LoadImage("Graphics/Tile.bmp")
  For count=1 To 3

@@ -12,10 +12,10 @@ Function GetInput(cyc)
  cRun(cyc)=0 : cPick(cyc)=0 : cSwitch(cyc)=0
  ;get keyboard input
  If pControl(cyc)=1 Or pControl(cyc)=3
-  If KeyDown(200) Then cUp(cyc)=1
-  If KeyDown(208) Then cDown(cyc)=1
-  If KeyDown(203) Then cLeft(cyc)=1
-  If KeyDown(205) Then cRight(cyc)=1
+  If KeyDown(keyMoveUp) Then cUp(cyc)=1
+  If KeyDown(keyMoveDown) Then cDown(cyc)=1
+  If KeyDown(keyMoveLeft) Then cLeft(cyc)=1
+  If KeyDown(keyMoveRight) Then cRight(cyc)=1
   If KeyDown(keyAttack) Then cAttack(cyc)=1
   If KeyDown(keyRun) Then cRun(cyc)=1
   If KeyDown(keyGrab) Then cGrab(cyc)=1
@@ -25,11 +25,11 @@ Function GetInput(cyc)
  EndIf
  ;get gamepad input
  If pControl(cyc)=2 Or pControl(cyc)=3
-  If JoyYDir()=-1 Then cUp(cyc)=1
-  If JoyYDir()=1 Then cDown(cyc)=1
-  If JoyXDir()=-1 Then cLeft(cyc)=1
-  If JoyXDir()=1 Then cRight(cyc)=1
-  If JoyDown(buttAttack) Then cAttack(cyc)=1 
+  If PadDirectionDown(padUp) Then cUp(cyc)=1
+  If PadDirectionDown(padDown) Then cDown(cyc)=1
+  If PadDirectionDown(padLeft) Then cLeft(cyc)=1
+  If PadDirectionDown(padRight) Then cRight(cyc)=1
+  If JoyDown(buttAttack) Then cAttack(cyc)=1
   If JoyDown(buttRun) Then cRun(cyc)=1
   If JoyDown(buttGrab) Then cGrab(cyc)=1
   If JoyDown(buttPick) Then cPick(cyc)=1
@@ -45,6 +45,17 @@ Function GetInput(cyc)
  EndIf
  ;get CPU input
  If pControl(cyc)=0 Then AI(cyc)
+End Function
+
+;CHECK A GAMEPAD DIRECTION BINDING
+Function PadDirectionDown(binding)
+ value=0
+ If binding>=1 And binding<=32 Then value=JoyDown(binding)
+ If binding=PAD_AXIS_Y_NEG And JoyYDir()=-1 Then value=1
+ If binding=PAD_AXIS_Y_POS And JoyYDir()=1 Then value=1
+ If binding=PAD_AXIS_X_NEG And JoyXDir()=-1 Then value=1
+ If binding=PAD_AXIS_X_POS And JoyXDir()=1 Then value=1
+ Return value
 End Function
 
 ;----------------------------------------------------------------

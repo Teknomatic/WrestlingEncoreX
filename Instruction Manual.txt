@@ -1,0 +1,120 @@
+---WRESTLING---
+---- ENCORE ----
+www.MDickie.com
+mat@mdickie.com
+
+* This document concerns itself with the functionality of the game. For more information about the Career mode, please refer to the additional "Wrestler's Bible.txt" document...
+
+Everything so far has been a warm-up act... get ready for the main event! Following the cult success of 2004's Wrestling MPire, the world's biggest and most innovative wrestling simulator takes centre stage for a Wrestling Encore. Having returned from a Tour Of Duty, this updated version of the game features thousands of polygons of improved graphics, thousands of frames of improved animation, thousands of waves of improved sound - and thousands of lines of improved code, which keeps the engine running smoother than ever before. Upon painting his masterpiece, MDickie has brought genius to your PC. Can you bring it to the ring? 
+
+SYSTEM REQUIREMENTS
+This game requires a strong processor of at least 1.6gHz to run properly. Naturally, a 3D card is essential and must be running DirectX 7.0 graphics or higher. Although keyboard control is available, the game is designed to be played with a 6-button gamepad...
+
+* Consult the Options menu to improve performance on slower machines (or push the game to its limit for those with power to spare!)...
+
+---------------------------------------- CONTROLS -------------------------------------------------------------------
+
+The menus of the game can be navigated with either keys, gamepad, or even mouse. On-screen prompts remind you of the commands available to you at all times. The game itself can only be controlled with keys or gamepad. You may assign your preferred method (including CPU control) to any character before each match by repeatedly clicking on their name box. The precise control layout for both each method can be redefined in the Options menu, but as standard they are as follows:
+By default, gameplay movement uses the arrow keys and first two joystick axes. These four directions can be remapped independently in the Options menu; each gamepad direction can use an axis direction or one of the first 32 joystick buttons.
+
+KEYS
+A = Attack / Stomp / Launch flying attack
+S = Grab opponent / Throw weapon
+Z = Run
+X = Pick up / Drop
+SPACE = Taunt / Pin attempt / Referee duties
+LEFT CTRL = Switch target enemy
+
+GAMEPAD
+BUTTON 4 = Attack / Stomp / Launch flying attack
+BUTTON 5 = Grab opponent / Throw weapon
+BUTTON 1 = Run
+BUTTON 2 = Pick up / Drop
+BUTTON 6 = Taunt / Pin attempt / Referee duties
+BUTTON 3 = Switch target enemy
+
+Whichever key they are assigned to, multiple commands can be used to perform more actions:
+ATTACK + DIRECTION = Upper attack (as opposed to Lower Attack)
+ATTACK + GRAB/RUN = Big attack / Crush attack / Flying crush
+ATTACK whilst RUNNING = Running attack / Running crush
+RUN + DIRECTION = Manual running (as opposed to a direct charge)
+PICK UP + RUN = Set fire to weapon / Use flaming weapon to set fire to item / Fix broken item
+
+Other actions can be performed by the way you use movement:
+- Walk repeatedly against the ropes or apron to climb in or out of the ring (or tag in a teammate)
+- Walk diagonally into the turnbuckles to climb up or down...
+- Walk repeatedly against items, railings, or the walls of cage, to climb on or off...
+- Press TAUNT near a turnbuckle to unfasten the top pad!
+
+GRAPPLING
+Grabbing an opponent opens up a whole range of commands in itself. Once you have an opponent under your control you have a short time to perform the following actions:
+GRAB = Release
+GRAB + DIRECTION = Irish Whip
+ATTACK (+ DIRECTION) = One of 4 preset 'A' moves
+RUN (+ DIRECTION) = One of 4 preset 'B' moves
+PICK UP (+ DIRECTION) = One of 4 preset 'C' moves
+
+You have similar commands at your disposal upon grabbing a grounded opponent:
+GRAB = Release
+GRAB + DIRECTION = Drag up into a standing grapple
+ATTACK / RUN / PICK UP = One of 3 preset moves for that part of the body
+
+OTHER CONTROLS
+ESCAPE = Terminate current match / Leave a finished match
+ENTER = Skip entrances / Skip conversations / Leave a finished match
+P = Pause / Resume
+F1/F2 = Browse all camera angles
+F3 = Zoom camera to destination
+1 - 0 = Skip to one of 10 preset camera angles
+- / + = Cycle which character to follow
+TAB = Assume control of a different character (Exhibitions only)
+F4 = Toggle health displays on or off
+F5 - F8 = Adjust game speed (very slow to very fast)
+F12 = Save screenshot to "Photo Album" folder  
+
+---------------------------------------- MATCH TYPES ---------------------------------------------------
+
+When configuring your own matches, you may like to consider the following definitions:
+
+AIMS
+"First Fall Wins" = First character to score a fall wins
+"Best Of Three" = First character to score 2 falls wins
+"Ironman" = Wrestler with most falls in time limit wins
+"Last Fall Wins" = Last character to score a fall before the final bell wins
+"Elimination" = Last wrestler to survive wins
+
+RULES
+"Hardcore" = No disqualifications or rope breaks, and falls count anywhere in the arena
+"Normal" = No disqualifications, but falls only count in the ring and rope breaks are enforced
+"Strict" = As above, but weapon use results in disqualification
+
+FORMAT
+"Sequential" = Wrestlers enter the match minute-by-minute
+"Individuals" = Every wrestler fights for himself
+"Teams" = The wrestlers are divided into 2 teams
+"Tag Teams" = As above, but only one wrestler can fight at a time and must tag in others
+
+CONDITIONS
+"Pins" = A fall is scored when one wrestler pins another for the count of 3
+"Submissions" = A fall is scored when one wrestler makes another submit
+"Knock-Out's" = Elimination occurs when a wrestler is found to be without any health
+"Bleeding" = Elimination occurs when a wrestler's face is found to be bleeding heavily
+"Ring-Out's" = Elimination occurs when a wrestler is found to be outside of the ring
+
+TIME LIMIT
+The number of minutes at which the match will be called a tie.
+
+---------------------------------------------------- EDITING ----------------------------------------------------------------------------
+
+The game contains a sophisticated editing facility that allows you to customize every single character - from their profile through to their various costumes and move sets. Naturally, doing this from scratch can be a chore - so you may like to make use of the cloning feature. Simply right-click or press SPACE to clone one wrestler over another. You may then go in and edit the new wrestler beyond recognition. There are also cloning options within the character editor, which help you maintain a consistent set of costumes. Three are required in all - one for wrestling, one for backstage appearances, and one for refereeing. The results are normally plain to see, and can be examined with the mouse, but when changing "Body Shape" you must press ENTER to update the model. 
+
+You are also reminded that many of the costumes are designed to have their colour schemes altered. By using the keys indicated below the thumbnail, you can set the shades of red, green, and blue in any image. Pressing BACKSPACE will restore the default colour. The vast range of costumes can take a while to browse through, so do remember that you can "randomize" with the SPACE bar (and warp closer to the number you're looking for). When you're ready to leave the editor make sure your character is looking good - because they'll have their photo taken for the records!
+
+* These editing facilities are locked by default, and must be unlocked by winning the World Championship of the promotion in question...
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+For more information about this game and it's predecessors, 
+please visit: http://www.MDickie.com 
+or contact: mat@mdickie.com
+
