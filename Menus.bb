@@ -218,11 +218,11 @@ While go=0
 	 EndIf
 	EndIf
 	;check limits
-	If optGameRes<2 Then optGameRes=2 
-	If optGameRes>5 Then optGameRes=5
+	If optGameRes<0 Then optGameRes=0
+	If optGameRes>2 Then optGameRes=2
 	If optGameRes<>oldRes Then optMenuRes=optGameRes
-	If optMenuRes<2 Then optMenuRes=2 
-	If optMenuRes>5 Then optMenuRes=5
+	If optMenuRes<0 Then optMenuRes=0
+	If optMenuRes>2 Then optMenuRes=2
 	If optMeters<0 Then optMeters=1
 	If optMeters>1 Then optMeters=0 
 	If optTags<0 Then optTags=0
@@ -2015,11 +2015,11 @@ Function ChangeResolution(resolution,task) ;0=pre-game, 1=during game
  ;assess preferences
  width=Int(textResX$(resolution))
  height=Int(textResY$(resolution))
- If GfxMode3DExists(width,height,16)=0 Then width=800 : height=600 : optGameRes=2 : optMenuRes=2
+ If GfxMode3DExists(width,height,32)=0 Then width=1920 : height=1080 : optGameRes=0 : optMenuRes=0
  ;make transition?
  If width<>GraphicsWidth() Or height<>GraphicsHeight()
   If task>0 Then Loader("Please Wait","Adjusting Resolution")
-  Graphics3D width,height,16,1
+  Graphics3D width,height,32,1
   If task>0 ;restore media
    LoadImages()
    Loader("Please Wait","Restoring Media")
