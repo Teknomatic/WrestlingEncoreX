@@ -328,9 +328,9 @@ promoRole(79,1)=1 : promoRole(79,2)=2 : promoRole(79,3)=0
 ;//////////////////////////////////////////////////////////////////////////////
 Function DisplayPromo()
  ;font & spacing
- If optGameRes=<1 Then SetFont font(2)
- If optGameRes=2 Then SetFont font(3)
- If optGameRes=>3 Then SetFont font(4)
+ If optGameRes=0 Then SetFont font(2)
+ If optGameRes=1 Then SetFont font(3)
+ If optGameRes=>2 Then SetFont font(4)
  r1=250 : g1=250 : b1=250
  x=rX#(400) : y=rY#(505) : s=rY#(36)
  speaker=0

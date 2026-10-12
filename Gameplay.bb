@@ -1,7 +1,7 @@
 ;-------------------------------------------------------------------------
 ;/////////////////////////// WRESTLING ENCORE ////////////////////////////
 ;-------------------------------------------------------------------------
-;~~~~~~~~~~~~~~~~~~~~~ Copyright © Mat Dickie 2006 ~~~~~~~~~~~~~~~~~~~~~~~
+;~~~~~~~~~~~~~~~~~~~~~ Copyright ï¿½ Mat Dickie 2006 ~~~~~~~~~~~~~~~~~~~~~~~
 ;~~~~~~~~~~ This program may not be re-released under any other ~~~~~~~~~~
 ;~~~~~~~ identity or sold commercially without express permission. ~~~~~~~
 ;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -174,8 +174,7 @@ For count=1 To 2
  fedOldChampTag(fed,count)=fedChampTag(fed,count)
 Next
 ;prepare press photo
-x#=rX#(512)
-If x#>700 Then x#=700
+x#=rY#(512)
 If game=1 Then gPhoto=CreateImage(x#,rY#(256))
 ;frame rating
 MatchLoader("Please Wait","Finalizing World",99)
@@ -536,7 +535,7 @@ While go=0
  EndIf
  ;clock
  If matchState=3 And naming=0
-  If optGameRes<2 Then SetFont font(1) Else SetFont font(2)
+  If optGameRes<1 Then SetFont font(1) Else SetFont font(2)
   r=255 : g=255 : b=255
   If matchState=4 Then r=200 : g=200 : b=200
   Outline(matchMins+" : "+Dig$(matchSecs,10),rX#(400),rY#(580),0,0,0,r,g,b)
@@ -730,12 +729,12 @@ End Function
 ;DRAW NAME LINE
 Function DrawNameLine(cyc,x,y)
  ;coloured lines
- Color 100,0,0 : Line rX#(x),rY#(y)+2,rX#(610),rY#(y)+2
- Color 150,0,0 : Line rX#(x),rY#(y)+3,rX#(610),rY#(y)+3
- Color 180,180,180 : Line rX#(x),rY#(y)+5,rX#(610),rY#(y)+5
- Color 180,180,180 : Line rX#(x),rY#(y)+6,rX#(610),rY#(y)+6
- Color 0,0,150 : Line rX#(x),rY#(y)+8,rX#(610),rY#(y)+8
- Color 0,0,100 : Line rX#(x),rY#(y)+9,rX#(610),rY#(y)+9
+ Color 100,0,0 : Line rX#(x),rY#(y)+9,rX#(610),rY#(y)+9
+ Color 150,0,0 : Line rX#(x),rY#(y)+10,rX#(610),rY#(y)+10
+ Color 180,180,180 : Line rX#(x),rY#(y)+12,rX#(610),rY#(y)+12
+ Color 180,180,180 : Line rX#(x),rY#(y)+13,rX#(610),rY#(y)+13
+ Color 0,0,150 : Line rX#(x),rY#(y)+15,rX#(610),rY#(y)+15
+ Color 0,0,100 : Line rX#(x),rY#(y)+16,rX#(610),rY#(y)+16
  ;main text
  SetFont font(4)
  namer$=charName$(pChar(cyc))
@@ -744,7 +743,7 @@ Function DrawNameLine(cyc,x,y)
  If matchState=4 And cyc=0 Then namer$="Nobody won this contest..." : affix$=""
  OutlineStraight(namer$+affix$,rX#(x)+5,rY#(y)-16,0,0,0,255,255,255) 
  ;portrait
- If cyc>0 Then DrawImageRect charPhoto(pChar(cyc)),rX#(590),rY#(y)+8,0,0,70,55
+ If cyc>0 Then DrawImageRect charPhoto(pChar(cyc)),rX#(590),rY#(y)+8,0,0,140,110
  ;manager reference
  v=FindManager(cyc)
  If v>0 And matchState=<3 And matchTeams=<0
@@ -771,11 +770,11 @@ Function DrawNameLine(cyc,x,y)
    If matchState=4 And pChar(cyc)<>fedOldChampWorld(fed) Then namer$="NEW World Champion!"
   EndIf
   If belter>0
-   DrawImage gBelt(belter),rX#(x)+52,rY#(y)+15
+   DrawImage gBelt(belter),rX#(x)+52,rY#(y)+35
    SetFont font(1)
    r=255 : g=200 : b=100
    If Left$(namer$,3)="NEW" Then g=Rnd(130,220)
-   OutlineStraight(namer$,rX#(x)+92,rY#(y)+14,0,0,0,r,g,b)
+   OutlineStraight(namer$,rX#(x)+122,rY#(y)+34,0,0,0,r,g,b)
   EndIf
  EndIf
 End Function
@@ -800,32 +799,32 @@ Function DrawHealthMeters()
   EndIf
   If camTim=0 Or x=>rX#(250) Or y>rY#(60)
    ;photo
-   If optGameRes=>2 Then DrawImageRect charPhoto(pChar(cyc)),x,y+5,0,0,70,52
+   DrawImageRect charPhoto(pChar(cyc)),x,y-10,0,0,140,104
    ;health meters
-   Color 130,0,0 : Rect x-50,y,100,5,1
-   Color 200,0,0 : Rect x-49,y+1,98,3,1
+   Color 130,0,0 : Rect x-100,y-5,200,15,1
+   Color 200,0,0 : Rect x-98,y-3,196,9,1
    If optHealth=0 Then liner=pHealth(cyc)*2
    If optHealth=1 Then liner=pHealth(cyc)
    If optHealth=2 Then liner=pHealth(cyc)-(pHealth(cyc)/3)
    If pInjured(cyc)>0 Then Color 80,0,0 Else Color 0,130,0
-   Rect x-50,y,liner,5,1
+   Rect x-100,y-5,liner*2,15,1
    If pInjured(cyc)>0 Then Color Rnd(130,220),0,0 Else Color 0,200,0
-   Rect x-49,y+1,liner-2,3,1
-   ;special meter
-   Color 200,100,0 : Line x-50,y+5,x+49,y+5
-   If pSpecial(cyc)>0 Then Color 255,Rnd(150,230),0 Else Color 250,230,0
-   Line x-50,y+5,(x-50)+pHeat(cyc),y+5
-   Color 250,150,0 : Line x-50,y+5,x-48,y+5
+   Rect x-98,y-3,(liner*2)-4,9,1
+    ;special meter
+    Color 200,100,0 : Rect x-100,y+12,200,6,1
+    If pSpecial(cyc)>0 Then Color 255,Rnd(150,230),0 Else Color 250,230,0
+    Rect x-100,y+12,(pHeat(cyc)*2),6,1
+    Color 250,150,0 : Rect x-100,y+12,6,6,1
    ;injury indicator
-   If pInjured(cyc)>0 Then DrawImage gInjury,x-55,y+2
+   If pInjured(cyc)>0 Then DrawImage gInjury,x-120,y+4
    ;name line
    r=230 : g=215 : b=200
    If matchTeams=<1 And cyc=matchLeader And matchType=>3 And matchType=<4 Then r=250 : g=200 : b=150
    If matchTeams=2 And LegalMan(cyc) Then r=250 : g=200 : b=150
    If pEliminated(cyc)=1 Then r=100 : g=80 : b=80 
    If controlTim>0 And pControl(cyc)>0 Then r=150 : g=150 : b=220
-   Outline(charName$(pChar(cyc)),x,y-5,0,0,0,r,g,b)
-   If matchType=>2 And matchType=<3 Then Outline("Falls: "+pFalls(cyc),x,y+10,0,0,0,200,200,200)
+   Outline(charName$(pChar(cyc)),x,y-25,0,0,0,r,g,b)
+   If matchType=>2 And matchType=<3 Then Outline("Falls: "+pFalls(cyc),x,y+35,0,0,0,200,200,200)
   EndIf
   ;spacing
   x=x+spacing

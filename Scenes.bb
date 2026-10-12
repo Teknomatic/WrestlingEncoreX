@@ -177,7 +177,7 @@ While go=0
  SetFont font(1)
  For count=0 To 6
   DrawOption(count,x,y,Upper$(textTrainCourse$(count)),"",0,0)
-  If count=charTrainCourse(negChar) Then DrawImageRect charPhoto(negChar),rX#(x)-70,rY#(y)+20,0,0,70,55
+  If count=charTrainCourse(negChar) Then DrawImageRect charPhoto(negChar),rX#(x)-140,rY#(y)+30,0,0,140,110
   y=y+30
  Next
  DrawOption(7,x,y+10,"Intensity",textTrainLevel$(charTrainLevel(negChar)),1,2)

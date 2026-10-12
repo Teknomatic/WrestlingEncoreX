@@ -133,73 +133,73 @@ While go=0
   DrawImage gReport,x,y
   ;dateline
   SetFont fontNews(0) : Color 50,50,50
-  Text x+116,y-142,"("+textWeek$(gamWeek(slot))+" of "+textMonth$(gamMonth(slot))+" "+gamYear(slot)+")",1,1 
+  Text x+209,y-256,"("+textWeek$(gamWeek(slot))+" of "+textMonth$(gamMonth(slot))+" "+gamYear(slot)+")",1,1 
   ;headers
   SetFont fontNews(1)
-  Outline("EMPLOYEE:",x-30,y-90,225,220,215,50,50,50)
-  OutlineStraight(charName$(gamChar(slot)),x+10,y-90,225,220,215,50,50,50)
-  Outline("EMPLOYER:",x-31,y-73,225,220,215,50,50,50)
-  OutlineStraight(charName$(fedBooker(fed)),x+10,y-73,225,220,215,50,50,50)
-  Outline("PROMOTION:",x-37,y-54,225,220,215,50,50,50)
-  OutlineStraight(fedName$(fed),x+10,y-54,225,220,215,50,50,50)
+  Outline("EMPLOYEE:",x-54,y-162,225,220,215,50,50,50)
+  OutlineStraight(charName$(gamChar(slot)),x+18,y-162,225,220,215,50,50,50)
+  Outline("EMPLOYER:",x-56,y-131,225,220,215,50,50,50)
+  OutlineStraight(charName$(fedBooker(fed)),x+18,y-131,225,220,215,50,50,50)
+  Outline("PROMOTION:",x-67,y-97,225,220,215,50,50,50)
+  OutlineStraight(fedName$(fed),x+18,y-97,225,220,215,50,50,50)
   ;income
   spacer=StringWidth(GetFigure$(gamFinance(1,0)))+20
-  If foc=1 Then Color 150,150,150 : Rect x-55,y-32,55+spacer,15,0
-  Outline("INCOME:",x-23,y-25,225,220,215,50,50,50)
+  If foc=1 Then Color 150,150,150 : Rect x-99,y-58,55+spacer,15,0
+  Outline("INCOME:",x-41,y-45,225,220,215,50,50,50)
   If gamFinance(1,0)<>0 Then r=0 : g=150 : b=0 Else r=50 : g=50 : b=50
-  OutlineStraight("$"+GetFigure$(gamFinance(1,0)),x+10,y-25,225,220,215,r,g,b)
+  OutlineStraight("$"+GetFigure$(gamFinance(1,0)),x+18,y-45,225,220,215,r,g,b)
   ;living costs
   spacer=StringWidth(GetFigure$(gamFinance(2,0)))+20
-  If foc=2 Then Color 150,150,150 : Rect x-92,y-1,92+spacer,15,0
-  Outline("LIVING COSTS:",x-42,y+6,225,220,215,50,50,50)
+  If foc=2 Then Color 150,150,150 : Rect x-166,y-2,92+spacer,15,0
+  Outline("LIVING COSTS:",x-76,y+11,225,220,215,50,50,50)
   If gamFinance(2,0)<>0 Then r=150 : g=0 : b=0 Else r=50 : g=50 : b=50
-  OutlineStraight("$"+GetFigure$(gamFinance(2,0)),x+10,y+6,225,220,215,r,g,b)
+  OutlineStraight("$"+GetFigure$(gamFinance(2,0)),x+18,y+11,225,220,215,r,g,b)
   ;gimmick changes
   spacer=StringWidth(GetFigure$(gamFinance(3,0)))+20
-  If foc=3 Then Color 150,150,150 : Rect x-122,y+16,122+spacer,15,0
-  Outline("GIMMICK CHANGES:",x-58,y+23,225,220,215,50,50,50)
+  If foc=3 Then Color 150,150,150 : Rect x-220,y+29,122+spacer,15,0
+  Outline("GIMMICK CHANGES:",x-104,y+41,225,220,215,50,50,50)
   If gamFinance(3,0)<>0 Then r=150 : g=0 : b=0 Else r=50 : g=50 : b=50
-  OutlineStraight("$"+GetFigure$(gamFinance(3,0)),x+10,y+23,225,220,215,r,g,b)
+  OutlineStraight("$"+GetFigure$(gamFinance(3,0)),x+18,y+41,225,220,215,r,g,b)
   ;management
   spacer=StringWidth(GetFigure$(gamFinance(4,0)))+20
-  If foc=4 Then Color 150,150,150 : Rect x-124,y+33,124+spacer,15,0 
-  Outline("MANAGEMENT FEES:",x-58,y+40,225,220,215,50,50,50)
+  If foc=4 Then Color 150,150,150 : Rect x-223,y+59,124+spacer,15,0 
+  Outline("MANAGEMENT FEES:",x-104,y+72,225,220,215,50,50,50)
   If gamFinance(4,0)<>0 Then r=150 : g=0 : b=0 Else r=50 : g=50 : b=50
-  OutlineStraight("$"+GetFigure$(gamFinance(4,0)),x+10,y+40,225,220,215,r,g,b)
+  OutlineStraight("$"+GetFigure$(gamFinance(4,0)),x+18,y+72,225,220,215,r,g,b)
   ;profit
   spacer=StringWidth(GetFigure$(gamFinance(5,0)))+20
-  If foc=5 Then Color 150,150,150 : Rect x-48,y+68,48+spacer,15,0
-  Outline("PROFIT:",x-20,y+75,225,220,215,50,50,50)
+  If foc=5 Then Color 150,150,150 : Rect x-86,y+122,48+spacer,15,0
+  Outline("PROFIT:",x-36,y+135,225,220,215,50,50,50)
   r=50 : g=50 : b=50
   If gamFinance(5,0)>0 Then r=0 : g=150 : b=0
   If gamFinance(5,0)<0 Then r=150 : g=0 : b=0
-  OutlineStraight("$"+GetFigure$(gamFinance(5,0)),x+10,y+75,225,220,215,r,g,b)
+  OutlineStraight("$"+GetFigure$(gamFinance(5,0)),x+18,y+135,225,220,215,r,g,b)
   ;balance
   spacer=StringWidth(GetFigure$(gamFinance(6,0)))+20
-  If foc=6 Then Color 150,150,150 : Rect x-92,y+98,92+spacer,15,0
-  Outline("NEW BALANCE:",x-42,y+105,225,220,215,50,50,50)
+  If foc=6 Then Color 150,150,150 : Rect x-166,y+176,92+spacer,15,0
+  Outline("NEW BALANCE:",x-76,y+189,225,220,215,50,50,50)
   r=50 : g=50 : b=50
   If gamFinance(6,0)>oldBank Then r=0 : g=150 : b=0
   If gamFinance(6,0)<oldBank Then r=150 : g=0 : b=0
-  OutlineStraight("$"+GetFigure$(gamFinance(6,0)),x+10,y+105,225,220,215,r,g,b)
+  OutlineStraight("$"+GetFigure$(gamFinance(6,0)),x+18,y+189,225,220,215,r,g,b)
   ;bonus explanations
   If foc>1
    SetFont font(0)
    spacer=StringWidth(GetFigure$(gamFinance(1,1)))+25
-   If gamBonus=1 And charSalary(gamChar(slot))>0 Then OutlineStraight("(PPV Bonus!)",x+spacer,y-25,225,220,215,130,0,250)
-   If gamBonus=2 Then OutlineStraight("(Donated)",x+spacer,y-25,225,220,215,250,120,180)
-   If gamBonus=3 And charSalary(gamChar(slot))>0 Then OutlineStraight("(Victory Bonus!)",x+spacer,y-25,225,220,215,130,0,250)
-   If gamBonus=4 And charSalary(gamChar(slot))>0 Then OutlineStraight("(Performance Penalty)",x+spacer,y-25,225,220,215,130,130,130)
-   If gamBonus=5 And gamFinance(1,1)>0 Then OutlineStraight("(Health Cover)",x+spacer,y-25,225,220,215,230,0,0)
-   If gamBonus=6 Then OutlineStraight("(Referee Bonus!)",x+spacer,y-25,225,220,215,130,0,250)
-   If gamBonus=7 Then OutlineStraight("(Management Bonus!)",x+spacer,y-25,225,220,215,130,0,250)
-   If gamBonus=8 Then OutlineStraight("(Overtime Bonus!)",x+spacer,y-25,225,220,215,130,0,250)
-   If gamBonus=9 Then OutlineStraight("(Corruption Bonus!)",x+spacer,y-25,225,220,215,130,0,250)
+   If gamBonus=1 And charSalary(gamChar(slot))>0 Then OutlineStraight("(PPV Bonus!)",x+spacer,y-45,225,220,215,130,0,250)
+   If gamBonus=2 Then OutlineStraight("(Donated)",x+spacer,y-45,225,220,215,250,120,180)
+   If gamBonus=3 And charSalary(gamChar(slot))>0 Then OutlineStraight("(Victory Bonus!)",x+spacer,y-45,225,220,215,130,0,250)
+   If gamBonus=4 And charSalary(gamChar(slot))>0 Then OutlineStraight("(Performance Penalty)",x+spacer,y-45,225,220,215,130,130,130)
+   If gamBonus=5 And gamFinance(1,1)>0 Then OutlineStraight("(Health Cover)",x+spacer,y-45,225,220,215,230,0,0)
+   If gamBonus=6 Then OutlineStraight("(Referee Bonus!)",x+spacer,y-45,225,220,215,130,0,250)
+   If gamBonus=7 Then OutlineStraight("(Management Bonus!)",x+spacer,y-45,225,220,215,130,0,250)
+   If gamBonus=8 Then OutlineStraight("(Overtime Bonus!)",x+spacer,y-45,225,220,215,130,0,250)
+   If gamBonus=9 Then OutlineStraight("(Corruption Bonus!)",x+spacer,y-45,225,220,215,130,0,250)
   EndIf
   ;prompt
   If foc=10 And gotim>50
    SetFont font(1)
-   Outline(">>> CLICK or ESCAPE to proceed >>>",x,y+190,120,120,120,250,250,250)
+   Outline(">>> CLICK or ESCAPE to proceed >>>",x,y+235,120,120,120,250,250,250)
   EndIf
  EndIf
  ;cursor
@@ -429,7 +429,7 @@ While go=0
   ;photo
   If char>0
    If count=1 Then DrawImage charPhoto(char),rX#(x),rY#(y)-40 
-   If count>1 Then DrawImageRect charPhoto(char),rX#(x),rY#(y)+24,0,0,70,52
+   If count>1 Then DrawImageRect charPhoto(char),rX#(x),rY#(y)+24,0,0,140,104
   EndIf
   ;position
   If count=1 Then SetFont font(4) Else SetFont font(3)

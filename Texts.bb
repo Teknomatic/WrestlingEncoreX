@@ -129,13 +129,10 @@ textTagControl$(0)="Specific Wrestler"
 textTagControl$(1)="Specific In Career"
 textTagControl$(2)="Whole Team"
 ;resolution
-Dim textResX$(5),textResY$(5)
-textResX$(0)="320" : textResY$(0)="240"
-textResX$(1)="640" : textResY$(1)="480"
-textResX$(2)="800" : textResY$(2)="600"
-textResX$(3)="1024" : textResY$(3)="768"
-textResX$(4)="1280" : textResY$(4)="1024"
-textResX$(5)="1280" : textResY$(5)="800"
+Dim textResX$(2),textResY$(2)
+textResX$(0)="1920" : textResY$(0)="1080"
+textResX$(1)="2560" : textResY$(1)="1440"
+textResX$(2)="3840" : textResY$(2)="2160"
 ;overhead labels
 Dim textTags$(2)
 textTags$(0)="None"

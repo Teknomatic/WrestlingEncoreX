@@ -44,6 +44,15 @@ Function SaveOptions()
   WriteInt fileout,buttRun
   WriteInt fileout,buttPick
   WriteInt fileout,buttTaunt
+  ;direction layout
+  WriteInt fileout,keyMoveUp
+  WriteInt fileout,keyMoveDown
+  WriteInt fileout,keyMoveLeft
+  WriteInt fileout,keyMoveRight
+  WriteInt fileout,padUp
+  WriteInt fileout,padDown
+  WriteInt fileout,padLeft
+  WriteInt fileout,padRight
  CloseFile(fileout)
 End Function
 
@@ -62,6 +71,10 @@ Function LoadOptions()
   ;display
   optGameRes=ReadInt(filein)
   optMenuRes=ReadInt(filein)
+    If optGameRes<0 Then optGameRes=0
+    If optGameRes>2 Then optGameRes=2
+    If optMenuRes<0 Then optMenuRes=0
+    If optMenuRes>2 Then optMenuRes=2
   optMeters=ReadInt(filein)
   optTags=ReadInt(filein)
   optFX=ReadInt(filein)
@@ -85,6 +98,17 @@ Function LoadOptions()
   buttRun=ReadInt(filein)
   buttPick=ReadInt(filein)
   buttTaunt=ReadInt(filein)
+  ;direction layout (absent from older options files)
+  If FileSize("Data/Options.dat")>=156
+   keyMoveUp=ReadInt(filein)
+   keyMoveDown=ReadInt(filein)
+   keyMoveLeft=ReadInt(filein)
+   keyMoveRight=ReadInt(filein)
+   padUp=ReadInt(filein)
+   padDown=ReadInt(filein)
+   padLeft=ReadInt(filein)
+   padRight=ReadInt(filein)
+  EndIf
  CloseFile(filein)
 End Function
 

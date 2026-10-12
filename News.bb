@@ -48,10 +48,10 @@ While go=0
  DrawImage gLogo(1),rX#(400),rY#(270)
  ;date
  SetFont font(1)
- DrawImage gMenu(1),rX#(x1)-87,rY#(465)
- Outline("New Week",rX#(x1)-87,rY#(465),190,190,190,200,0,0)
- DrawImage gMenu(5),rX#(x2)+87,rY#(465)
- Outline(textWeek$(gamWeek(slot))+" of "+textMonth$(gamMonth(slot)),rX#(x2)+87,rY#(465),190,190,190,75,75,75)
+ DrawImage gMenu(1),rX#(x1)-192,rY#(465)
+ Outline("New Week",rX#(x1)-192,rY#(465),190,190,190,200,0,0)
+ DrawImage gMenu(5),rX#(x2)+192,rY#(465)
+ Outline(textWeek$(gamWeek(slot))+" of "+textMonth$(gamMonth(slot)),rX#(x2)+192,rY#(465),190,190,190,75,75,75)
  ;cursor
  DrawImage gCursor,MouseX()+10,MouseY()+9
 
@@ -1022,549 +1022,549 @@ While go=0
  ;CONSTRUCT NEWSPAPER
  If gotim>0
   ;mock-up
-  x=rX#(400) : y=rY#(370)
+  x=rX#(400) : y=rY#(380)
   DrawImage gNewspaper,x,y
   SetFont font(0) : Color 110,110,110
-  Text x-268,y-107,"The Nation's #1 Newspaper",0,1
-  Text x+40,y-107,textWeek$(gamWeek(slot))+" of "+textMonth$(gamMonth(slot))+" "+gamYear(slot),1,1
-  Text x+235,y-107,"50 Cents",0,1
+  Text x-482,y-193,"The Nation's #1 Newspaper",0,1
+  Text x+72,y-193,textWeek$(gamWeek(slot))+" of "+textMonth$(gamMonth(slot))+" "+gamYear(slot),1,1
+  Text x+423,y-193,"50 Cents",0,1
   ;contract issues
   SetFont fontNews(2) : Color 0,0,0
   If eEvent(cyc)=-1
    headline$="CALM BEFORE THE STORM"
-   Text x+5,y+150,fedName$(fed)+" have nothing to report...",1,1
+   Text x+9,y+270,fedName$(fed)+" have nothing to report...",1,1
   EndIf
   If eEvent(cyc)=1
    headline$="THE SAGA CONTINUES"
-   Text x+5,y+138,charName$(char)+" has renewed "+Lower$(His$(g))+" contract with "+fedName$(fed)+".",1,1
-   Text x+5,y+166,He$(g)+"'ll remain on the roster for the next "+charContract(char)+" weeks...",1,1
+   Text x+9,y+248,charName$(char)+" has renewed "+Lower$(His$(g))+" contract with "+fedName$(fed)+".",1,1
+   Text x+9,y+299,He$(g)+"'ll remain on the roster for the next "+charContract(char)+" weeks...",1,1
   EndIf
   If eEvent(cyc)=2
    headline$="MOVING ON"
-   Text x+5,y+138,charName$(char)+" has left "+fedName$(fed),1,1
-   Text x+5,y+166,"to pursue a career at "+fedName$(charFed(char))+"...",1,1
+   Text x+9,y+248,charName$(char)+" has left "+fedName$(fed),1,1
+   Text x+9,y+299,"to pursue a career at "+fedName$(charFed(char))+"...",1,1
   EndIf
   If eEvent(cyc)=3
    headline$="BACK TO BASICS"
-   Text x+5,y+138,charName$(char)+" has been released from "+fedName$(fed)+".",1,1
-   Text x+5,y+166,He$(g)+"'ll have to find permanent work elsewhere...",1,1
+   Text x+9,y+248,charName$(char)+" has been released from "+fedName$(fed)+".",1,1
+   Text x+9,y+299,He$(g)+"'ll have to find permanent work elsewhere...",1,1
   EndIf
   If eEvent(cyc)=4
    headline$="END OF THE ROAD"
-   Text x+5,y+138,"At the age of "+charAge(char)+", "+charName$(char)+" has retired from",1,1
-   Text x+5,y+166,"the wrestling business to pursue other ambitions...",1,1
+   Text x+9,y+248,"At the age of "+charAge(char)+", "+charName$(char)+" has retired from",1,1
+   Text x+9,y+299,"the wrestling business to pursue other ambitions...",1,1
   EndIf
   If eEvent(cyc)=5
    headline$="HOT PROPERTY"
-   Text x+5,y+138,fedName$(fed)+" have bought "+charName$(char)+" from",1,1
-   Text x+5,y+166,fedName$(eVariable(cyc))+" and signed "+Him$(g)+" to a major deal...",1,1
+   Text x+9,y+248,fedName$(fed)+" have bought "+charName$(char)+" from",1,1
+   Text x+9,y+299,fedName$(eVariable(cyc))+" and signed "+Him$(g)+" to a major deal...",1,1
   EndIf
   If eEvent(cyc)=6
    headline$="ROAD TO RECOVERY"
-   Text x+5,y+138,charName$(char)+" has recovered from "+Lower$(His$(g))+" injury",1,1
-   Text x+5,y+166,"and should now return to active competition...",1,1
+   Text x+9,y+248,charName$(char)+" has recovered from "+Lower$(His$(g))+" injury",1,1
+   Text x+9,y+299,"and should now return to active competition...",1,1
   EndIf
   If eEvent(cyc)=7
    headline$="BACK TO BUSINESS"
-   Text x+5,y+138,charName$(char)+" has returned from "+Lower$(His$(g))+" absence",1,1
-   Text x+5,y+166,"and should now return to active competition...",1,1
+   Text x+9,y+248,charName$(char)+" has returned from "+Lower$(His$(g))+" absence",1,1
+   Text x+9,y+299,"and should now return to active competition...",1,1
   EndIf
   ;urgent career issues
   If eEvent(cyc)=10
    headline$="HAPPY NEW YEAR!"
    If eCharged(cyc)=0 Then PlaySound sCrowd(4) : eCharged(cyc)=1
-   Text x+5,y+138,"A new year is upon us! You are now "+charAge(char)+" years old,",1,1
-   Text x+5,y+166,"and have been in the business for "+CountExperience(slot)+" weeks...",1,1
+   Text x+9,y+248,"A new year is upon us! You are now "+charAge(char)+" years old,",1,1
+   Text x+9,y+299,"and have been in the business for "+CountExperience(slot)+" weeks...",1,1
   EndIf
   If eEvent(cyc)=11
    headline$="THE END IS NEAR"
-   Text x+5,y+138,"Your contract with "+fedName$(fed)+" expires soon!",1,1
-   Text x+5,y+166,"Consider your future with the promotion...",1,1
+   Text x+9,y+248,"Your contract with "+fedName$(fed)+" expires soon!",1,1
+   Text x+9,y+299,"Consider your future with the promotion...",1,1
   EndIf
   If eEvent(cyc)=12
    headline$="JUDGMENT DAY"
-   Text x+5,y+138,"Your contract with "+fedName$(fed)+" has expired!",1,1
-   Text x+5,y+166,"There'll be a meeting later to discuss your future...",1,1
+   Text x+9,y+248,"Your contract with "+fedName$(fed)+" has expired!",1,1
+   Text x+9,y+299,"There'll be a meeting later to discuss your future...",1,1
   EndIf
   ;random career issues
   If eEvent(cyc)=20
    headline$="NO PAIN, NO GAIN"
    ChannelPitch chTheme,40000
-   Text x+5,y+138,charName$(char)+" incurred an injury while training,",1,1
-   Text x+5,y+166,"and will be out of action until "+Lower$(He$(g))+" recovers...",1,1
+   Text x+9,y+248,charName$(char)+" incurred an injury while training,",1,1
+   Text x+9,y+299,"and will be out of action until "+Lower$(He$(g))+" recovers...",1,1
   EndIf
   If eEvent(cyc)=21
    headline$="HEALTH COMPLICATIONS"
-   Text x+5,y+138,charName$(char)+"'s injury seems to have worsened",1,1
-   Text x+5,y+166,"and will now take "+charInjured(char)+" weeks to treat...",1,1
+   Text x+9,y+248,charName$(char)+"'s injury seems to have worsened",1,1
+   Text x+9,y+299,"and will now take "+charInjured(char)+" weeks to treat...",1,1
   EndIf
   If eEvent(cyc)=22
    headline$="MIRACLE RECOVERY!"
-   Text x+5,y+138,charName$(char)+"'s injury isn't as bad as first",1,1
-   Text x+5,y+166,"thought and should heal in just "+charInjured(char)+" weeks!",1,1
+   Text x+9,y+248,charName$(char)+"'s injury isn't as bad as first",1,1
+   Text x+9,y+299,"thought and should heal in just "+charInjured(char)+" weeks!",1,1
   EndIf
   If eEvent(cyc)=23
    headline$="HEALTH SCARE"
-   Text x+5,y+138,charName$(char)+"'s health has been sapped",1,1
-   Text x+5,y+166,"by the symptoms of a mild illness...",1,1
+   Text x+9,y+248,charName$(char)+"'s health has been sapped",1,1
+   Text x+9,y+299,"by the symptoms of a mild illness...",1,1
   EndIf
   If eEvent(cyc)=24
    headline$="FIGHTING FIT"
-   Text x+5,y+138,charName$(char)+" seems to be feeling great",1,1
-   Text x+5,y+166,"today and is in perfect health!",1,1
+   Text x+9,y+248,charName$(char)+" seems to be feeling great",1,1
+   Text x+9,y+299,"today and is in perfect health!",1,1
   EndIf
   If eEvent(cyc)=25
    headline$="DRUG ABUSE"
-   Text x+5,y+138,charName$(char)+" has developed an addiction",1,1
-   Text x+5,y+166,"to painkillers and will need time to recover!",1,1
+   Text x+9,y+248,charName$(char)+" has developed an addiction",1,1
+   Text x+9,y+299,"to painkillers and will need time to recover!",1,1
   EndIf
   If eEvent(cyc)=26
    headline$="STEROID ABUSE"
-   Text x+5,y+138,charName$(char)+" has suffered an adverse reaction",1,1
-   Text x+5,y+166,"to steroids and will need time to recover!",1,1
+   Text x+9,y+248,charName$(char)+" has suffered an adverse reaction",1,1
+   Text x+9,y+299,"to steroids and will need time to recover!",1,1
   EndIf
   If eEvent(cyc)=27
    headline$="LARGER THAN LIFE"
-   Text x+5,y+138,charName$(char)+" seems to have gained weight!",1,1
-   Text x+5,y+166,"The changes may affect "+Lower$(His$(g))+" wrestling style...",1,1
+   Text x+9,y+248,charName$(char)+" seems to have gained weight!",1,1
+   Text x+9,y+299,"The changes may affect "+Lower$(His$(g))+" wrestling style...",1,1
   EndIf
   If eEvent(cyc)=28
    headline$="SHEDDING THE POUNDS"
-   Text x+5,y+138,charName$(char)+" seems to have lost weight!",1,1
-   Text x+5,y+166,"The changes may affect "+Lower$(His$(g))+" wrestling style...",1,1
+   Text x+9,y+248,charName$(char)+" seems to have lost weight!",1,1
+   Text x+9,y+299,"The changes may affect "+Lower$(His$(g))+" wrestling style...",1,1
   EndIf
   If eEvent(cyc)=29
    headline$="IDENTITY CRISIS"
-   Text x+5,y+138,fedName$(fed)+" have used their image rights",1,1
-   Text x+5,y+166,"to change your name to '"+charName$(char)+"'!",1,1
+   Text x+9,y+248,fedName$(fed)+" have used their image rights",1,1
+   Text x+9,y+299,"to change your name to '"+charName$(char)+"'!",1,1
   EndIf
   If eEvent(cyc)=30
    headline$="FACE THE MUSIC"
-   Text x+5,y+138,fedName$(fed)+" have used their image rights",1,1
-   Text x+5,y+166,"to assign you a new entrance gimmick!",1,1
+   Text x+9,y+248,fedName$(fed)+" have used their image rights",1,1
+   Text x+9,y+299,"to assign you a new entrance gimmick!",1,1
   EndIf
   If eEvent(cyc)=31
    headline$="FASHION VICTIM"
-   Text x+5,y+138,fedName$(fed)+" have used their image rights",1,1
-   Text x+5,y+166,"to assign you a new wrestling costume!",1,1
+   Text x+9,y+248,fedName$(fed)+" have used their image rights",1,1
+   Text x+9,y+299,"to assign you a new wrestling costume!",1,1
   EndIf
   If eEvent(cyc)=32
    headline$="KEEPING UP APPEARANCES"
-   Text x+5,y+138,charName$(char)+"'s profile has suffered due",1,1
-   Text x+5,y+166,"to a lack of exposure in recent weeks...",1,1
+   Text x+9,y+248,charName$(char)+"'s profile has suffered due",1,1
+   Text x+9,y+299,"to a lack of exposure in recent weeks...",1,1
   EndIf
   If eEvent(cyc)=33
    headline$="GROWING PAINS"
-   Text x+5,y+138,charName$(char)+" has grown an inch!",1,1
-   Text x+5,y+166,"The "+charAge(char)+" year old now stands at "+GetHeight$(charHeight(char))+"...",1,1
+   Text x+9,y+248,charName$(char)+" has grown an inch!",1,1
+   Text x+9,y+299,"The "+charAge(char)+" year old now stands at "+GetHeight$(charHeight(char))+"...",1,1
   EndIf
   If eEvent(cyc)=34
    headline$="SEX ABUSE SCANDAL"
    ChannelPitch chTheme,40000
-   Text x+5,y+125,charName$(char)+" has been accused of sexually",1,1
-   Text x+5,y+150,"abusing a female employee of "+fedName$(fed)+"!",1,1
-   Text x+5,y+175,He$(g)+"'ll be suspended until the matter is resolved...",1,1
+   Text x+9,y+225,charName$(char)+" has been accused of sexually",1,1
+   Text x+9,y+270,"abusing a female employee of "+fedName$(fed)+"!",1,1
+   Text x+9,y+315,He$(g)+"'ll be suspended until the matter is resolved...",1,1
   EndIf
   If eEvent(cyc)=35
    headline$="IDENTITY CRISIS"
-   Text x+5,y+138,"The fans insist on treating "+charName$(char),1,1
-   Text x+5,y+166,"as a Heel despite "+Lower$(His$(g))+" attempts to play Face!",1,1
+   Text x+9,y+248,"The fans insist on treating "+charName$(char),1,1
+   Text x+9,y+299,"as a Heel despite "+Lower$(His$(g))+" attempts to play Face!",1,1
   EndIf
   If eEvent(cyc)=36
    headline$="IDENTITY CRISIS"
-   Text x+5,y+138,"The fans insist on treating "+charName$(char),1,1
-   Text x+5,y+166,"as a Face despite "+Lower$(His$(g))+" attempts to play Heel!",1,1
+   Text x+9,y+248,"The fans insist on treating "+charName$(char),1,1
+   Text x+9,y+299,"as a Face despite "+Lower$(His$(g))+" attempts to play Heel!",1,1
   EndIf
   ;universal events
   If eEvent(cyc)=50
    headline$="WORLD CHAMP STRIPPED"
-   Text x+5,y+138,charName$(char)+" has been stripped of the World",1,1
-   Text x+5,y+166,"Championship due to being unable to defend it...",1,1
+   Text x+9,y+248,charName$(char)+" has been stripped of the World",1,1
+   Text x+9,y+299,"Championship due to being unable to defend it...",1,1
   EndIf
   If eEvent(cyc)=51
    headline$="INTER CHAMP STRIPPED"
-   Text x+5,y+138,charName$(char)+" has been stripped of the Inter",1,1
-   Text x+5,y+166,"Championship due to being unable to defend it...",1,1
+   Text x+9,y+248,charName$(char)+" has been stripped of the Inter",1,1
+   Text x+9,y+299,"Championship due to being unable to defend it...",1,1
   EndIf
   If eEvent(cyc)=52
    headline$="TAG CHAMPS STRIPPED"
-   Text x+5,y+138,charName$(char)+"'s team have been stripped of the Tag",1,1
-   Text x+5,y+166,"Championships due to being unable to defend them...",1,1
-   DrawImage charPhoto(charFriend(char)),x+90,y+28
+   Text x+9,y+248,charName$(char)+"'s team have been stripped of the Tag",1,1
+   Text x+9,y+299,"Championships due to being unable to defend them...",1,1
+   DrawImage charPhoto(charFriend(char)),x+162,y+50
   EndIf
   If eEvent(cyc)=53
    headline$="OVER THE HILL"
-   Text x+5,y+138,"At the age of "+charAge(char)+", "+charName$(char)+" has reached",1,1
-   Text x+5,y+166,Lower$(His$(g))+" physical peak. "+He$(g)+"'s as good as "+Lower$(He$(g))+"'ll ever be...",1,1
+   Text x+9,y+248,"At the age of "+charAge(char)+", "+charName$(char)+" has reached",1,1
+   Text x+9,y+299,Lower$(His$(g))+" physical peak. "+He$(g)+"'s as good as "+Lower$(He$(g))+"'ll ever be...",1,1
   EndIf
   If eEvent(cyc)=54
    headline$="OVER THE HILL"
-   Text x+5,y+138,"At the age of "+charAge(char)+", "+charName$(char)+"'s training",1,1
-   Text x+5,y+166,"regime is futile. "+He$(g)+"'s as good as "+Lower$(He$(g))+"'ll ever be...",1,1
+   Text x+9,y+248,"At the age of "+charAge(char)+", "+charName$(char)+"'s training",1,1
+   Text x+9,y+299,"regime is futile. "+He$(g)+"'s as good as "+Lower$(He$(g))+"'ll ever be...",1,1
   EndIf
   If eEvent(cyc)=55
    headline$="A NEW LEAF"
-   Text x+5,y+138,charName$(char)+" has decided to turn Face,",1,1
-   Text x+5,y+166,"and will now be portrayed in a positive light...",1,1
+   Text x+9,y+248,charName$(char)+" has decided to turn Face,",1,1
+   Text x+9,y+299,"and will now be portrayed in a positive light...",1,1
   EndIf
   If eEvent(cyc)=56
    headline$="THE DARK SIDE"
-   Text x+5,y+138,charName$(char)+" has decided to turn Heel,",1,1
-   Text x+5,y+166,"and will now be portrayed in a negative light...",1,1
+   Text x+9,y+248,charName$(char)+" has decided to turn Heel,",1,1
+   Text x+9,y+299,"and will now be portrayed in a negative light...",1,1
   EndIf
   If eEvent(cyc)=57
    headline$="MUTUAL ADMIRATION"
-   Text x+5,y+138,charName$(char)+" has become good friends",1,1
-   Text x+5,y+166,"with "+charName$(charFriend(char))+"...",1,1
-   DrawImage charPhoto(charFriend(char)),x+90,y+28
+   Text x+9,y+248,charName$(char)+" has become good friends",1,1
+   Text x+9,y+299,"with "+charName$(charFriend(char))+"...",1,1
+   DrawImage charPhoto(charFriend(char)),x+162,y+50
   EndIf
   If eEvent(cyc)=58
    headline$="BOILING POINT"
-   Text x+5,y+138,charName$(char)+" has developed a heated",1,1
-   Text x+5,y+166,"rivalry with "+charName$(charEnemy(char))+"!",1,1
-   DrawImage charPhoto(charEnemy(char)),x+90,y+28
+   Text x+9,y+248,charName$(char)+" has developed a heated",1,1
+   Text x+9,y+299,"rivalry with "+charName$(charEnemy(char))+"!",1,1
+   DrawImage charPhoto(charEnemy(char)),x+162,y+50
   EndIf
   If eEvent(cyc)=59
    headline$="UNDER NEW MANAGEMENT"
-   Text x+5,y+138,charName$(char)+" has hired "+charName$(charManager(char)),1,1
-   Text x+5,y+166,"to be "+Lower$(His$(g))+" manager at ringside...",1,1
-   DrawImage charPhoto(charManager(char)),x+90,y+28
+   Text x+9,y+248,charName$(char)+" has hired "+charName$(charManager(char)),1,1
+   Text x+9,y+299,"to be "+Lower$(His$(g))+" manager at ringside...",1,1
+   DrawImage charPhoto(charManager(char)),x+162,y+50
   EndIf 
   If eEvent(cyc)=60
    headline$="RISING STAR"
-   Text x+5,y+138,charName$(char)+"'s act has been getting",1,1
-   Text x+5,y+166,"over with the fans in recent weeks!",1,1
+   Text x+9,y+248,charName$(char)+"'s act has been getting",1,1
+   Text x+9,y+299,"over with the fans in recent weeks!",1,1
   EndIf
   If eEvent(cyc)=61
    headline$="MOUNTAIN OF MUSCLE"
-   Text x+5,y+138,charName$(char)+"'s strength seems to",1,1
-   Text x+5,y+166,"have improved in recent weeks!",1,1
+   Text x+9,y+248,charName$(char)+"'s strength seems to",1,1
+   Text x+9,y+299,"have improved in recent weeks!",1,1
   EndIf
   If eEvent(cyc)=62
    headline$="MAN OF 1'000 HOLDS"
-   Text x+5,y+138,charName$(char)+"'s wrestling skills seem",1,1
-   Text x+5,y+166,"to have improved in recent weeks!",1,1
+   Text x+9,y+248,charName$(char)+"'s wrestling skills seem",1,1
+   Text x+9,y+299,"to have improved in recent weeks!",1,1
   EndIf
   If eEvent(cyc)=63
    headline$="FANCY FOOTWORK"
-   Text x+5,y+138,charName$(char)+"'s agility seems to",1,1
-   Text x+5,y+166,"have improved in recent weeks!",1,1
+   Text x+9,y+248,charName$(char)+"'s agility seems to",1,1
+   Text x+9,y+299,"have improved in recent weeks!",1,1
   EndIf
   If eEvent(cyc)=64
    headline$="MARATHON MAN"
-   Text x+5,y+138,charName$(char)+"'s stamina seems to",1,1
-   Text x+5,y+166,"have improved in recent weeks!",1,1
+   Text x+9,y+248,charName$(char)+"'s stamina seems to",1,1
+   Text x+9,y+299,"have improved in recent weeks!",1,1
   EndIf
   If eEvent(cyc)=65
    headline$="IRON MAN"
-   Text x+5,y+138,charName$(char)+"'s toughness seems to",1,1
-   Text x+5,y+166,"have improved in recent weeks!",1,1
+   Text x+9,y+248,charName$(char)+"'s toughness seems to",1,1
+   Text x+9,y+299,"have improved in recent weeks!",1,1
   EndIf
   If eEvent(cyc)=66
    headline$="EMPLOYEE OF THE MONTH"
-   Text x+5,y+138,charName$(char)+" has vowed to put more",1,1
-   Text x+5,y+166,"effort into "+Lower$(His$(g))+" wrestling career!",1,1
+   Text x+9,y+248,charName$(char)+" has vowed to put more",1,1
+   Text x+9,y+299,"effort into "+Lower$(His$(g))+" wrestling career!",1,1
   EndIf
   If eEvent(cyc)=67
    headline$="JOB SATISFACTION"
-   Text x+5,y+138,charName$(char)+" has been enjoying",1,1
-   Text x+5,y+166,"working for "+fedName$(fed)+"!",1,1
+   Text x+9,y+248,charName$(char)+" has been enjoying",1,1
+   Text x+9,y+299,"working for "+fedName$(fed)+"!",1,1
   EndIf
   If eEvent(cyc)=68
    headline$="FADING STAR"
-   Text x+5,y+138,charName$(char)+"'s act has started to",1,1
-   Text x+5,y+166,"lose its appeal in recent weeks...",1,1
+   Text x+9,y+248,charName$(char)+"'s act has started to",1,1
+   Text x+9,y+299,"lose its appeal in recent weeks...",1,1
   EndIf
   If eEvent(cyc)=69
    headline$="PENCIL NECK GEEK"
-   Text x+5,y+138,charName$(char)+"'s strength seems to",1,1
-   Text x+5,y+166,"have deteriorated in recent weeks...",1,1
+   Text x+9,y+248,charName$(char)+"'s strength seems to",1,1
+   Text x+9,y+299,"have deteriorated in recent weeks...",1,1
   EndIf
   If eEvent(cyc)=70
    headline$="SLIPPERY FINGERS"
-   Text x+5,y+138,charName$(char)+"'s wrestling skills seem",1,1
-   Text x+5,y+166,"to have deteriorated in recent weeks...",1,1
+   Text x+9,y+248,charName$(char)+"'s wrestling skills seem",1,1
+   Text x+9,y+299,"to have deteriorated in recent weeks...",1,1
   EndIf
   If eEvent(cyc)=71
    headline$="TWO LEFT FEET"
-   Text x+5,y+138,charName$(char)+"'s agility seems to",1,1
-   Text x+5,y+166,"have deteriorated in recent weeks...",1,1
+   Text x+9,y+248,charName$(char)+"'s agility seems to",1,1
+   Text x+9,y+299,"have deteriorated in recent weeks...",1,1
   EndIf
   If eEvent(cyc)=72
    headline$="COACH POTATO"
-   Text x+5,y+138,charName$(char)+"'s stamina seems to",1,1
-   Text x+5,y+166,"have deteriorated in recent weeks...",1,1
+   Text x+9,y+248,charName$(char)+"'s stamina seems to",1,1
+   Text x+9,y+299,"have deteriorated in recent weeks...",1,1
   EndIf
   If eEvent(cyc)=73
    headline$="HANDLE WITH CARE"
-   Text x+5,y+138,charName$(char)+"'s toughness seems to",1,1
-   Text x+5,y+166,"have deteriorated in recent weeks...",1,1
+   Text x+9,y+248,charName$(char)+"'s toughness seems to",1,1
+   Text x+9,y+299,"have deteriorated in recent weeks...",1,1
   EndIf
   If eEvent(cyc)=74
    headline$="PROBLEM CHILD"
-   Text x+5,y+138,charName$(char)+"'s attitude seems to",1,1
-   Text x+5,y+166,"have deteriorated in recent weeks...",1,1
+   Text x+9,y+248,charName$(char)+"'s attitude seems to",1,1
+   Text x+9,y+299,"have deteriorated in recent weeks...",1,1
   EndIf
   If eEvent(cyc)=75
    headline$="MISERY GUTS"
-   Text x+5,y+138,charName$(char)+" has grown tired of",1,1
-   Text x+5,y+166,"working for "+fedName$(fed)+"...",1,1
+   Text x+9,y+248,charName$(char)+" has grown tired of",1,1
+   Text x+9,y+299,"working for "+fedName$(fed)+"...",1,1
   EndIf
   If eEvent(cyc)=76
    headline$="GOOD COMPANY"
-   Text x+5,y+138,charName$(char)+"'s profile has benefited from",1,1
-   Text x+5,y+166,"being associated with "+charName$(charFriend(char))+"!",1,1
-   DrawImage charPhoto(charFriend(char)),x+90,y+28
+   Text x+9,y+248,charName$(char)+"'s profile has benefited from",1,1
+   Text x+9,y+299,"being associated with "+charName$(charFriend(char))+"!",1,1
+   DrawImage charPhoto(charFriend(char)),x+162,y+50
   EndIf
   If eEvent(cyc)=77
    headline$="BAD COMPANY"
-   Text x+5,y+138,charName$(char)+"'s popularity has suffered from",1,1
-   Text x+5,y+166,"being associated with "+charName$(charFriend(char))+"...",1,1
-   DrawImage charPhoto(charFriend(char)),x+90,y+28
+   Text x+9,y+248,charName$(char)+"'s popularity has suffered from",1,1
+   Text x+9,y+299,"being associated with "+charName$(charFriend(char))+"...",1,1
+   DrawImage charPhoto(charFriend(char)),x+162,y+50
   EndIf
   If eEvent(cyc)=78
    headline$="BREAK UP"
-   Text x+5,y+138,charName$(char)+" has fallen out with "+charName$(charEnemy(char))+"!",1,1
-   Text x+5,y+166,"The former friends are now bitter rivals...",1,1
-   DrawImage charPhoto(charEnemy(char)),x+90,y+28
+   Text x+9,y+248,charName$(char)+" has fallen out with "+charName$(charEnemy(char))+"!",1,1
+   Text x+9,y+299,"The former friends are now bitter rivals...",1,1
+   DrawImage charPhoto(charEnemy(char)),x+162,y+50
   EndIf
   ;health issues
   If eEvent(cyc)=90
    headline$="RISKY BUSINESS"
-   Text x+5,y+138,charName$(char)+" incurred a slight injury in a recent",1,1
-   Text x+5,y+166,"match, and will be out of action for "+charInjured(char)+" weeks...",1,1
+   Text x+9,y+248,charName$(char)+" incurred a slight injury in a recent",1,1
+   Text x+9,y+299,"match, and will be out of action for "+charInjured(char)+" weeks...",1,1
   EndIf
   If eEvent(cyc)=91
    headline$="RISKY BUSINESS"
    ChannelPitch chTheme,40000
-   Text x+5,y+125,charName$(char)+" sustained a serious injury in a recent",1,1
-   Text x+5,y+150,"match, and will be out of action for the next "+charInjured(char)+" weeks.",1,1
-   Text x+5,y+175,"Even then, "+Lower$(He$(g))+" may be a shadow of "+Lower$(His$(g))+" former self...",1,1
+   Text x+9,y+225,charName$(char)+" sustained a serious injury in a recent",1,1
+   Text x+9,y+270,"match, and will be out of action for the next "+charInjured(char)+" weeks.",1,1
+   Text x+9,y+315,"Even then, "+Lower$(He$(g))+" may be a shadow of "+Lower$(His$(g))+" former self...",1,1
   EndIf
   If eEvent(cyc)=92
    headline$="CASUALTY OF WAR"
    ChannelPitch chTheme,40000
-   Text x+5,y+125,charName$(char)+" sustained a serious injury in a recent match.",1,1
-   Text x+5,y+150,He$(g)+" was rushed to hospital, where it's feared "+Lower$(He$(g))+" may be paralysed.",1,1
-   Text x+5,y+175,His$(g)+" wrestling career is almost certainly over...",1,1
+   Text x+9,y+225,charName$(char)+" sustained a serious injury in a recent match.",1,1
+   Text x+9,y+270,He$(g)+" was rushed to hospital, where it's feared "+Lower$(He$(g))+" may be paralysed.",1,1
+   Text x+9,y+315,His$(g)+" wrestling career is almost certainly over...",1,1
   EndIf
   If eEvent(cyc)=93
    headline$="RING OF DEATH"
    ChannelPitch chTheme,40000
-   Text x+5,y+125,charName$(char)+" sustained a serious injury in a recent match.",1,1
-   Text x+5,y+150,"Despite their best efforts, medics were not able to resuscitate "+Lower$(Him$(g))+".",1,1
-   Text x+5,y+175,charName$(char)+" has died as a result of "+Lower$(His$(g))+" injuries. "+He$(g)+" was "+charAge(char)+"...",1,1
+   Text x+9,y+225,charName$(char)+" sustained a serious injury in a recent match.",1,1
+   Text x+9,y+270,"Despite their best efforts, medics were not able to resuscitate "+Lower$(Him$(g))+".",1,1
+   Text x+9,y+315,charName$(char)+" has died as a result of "+Lower$(His$(g))+" injuries. "+He$(g)+" was "+charAge(char)+"...",1,1
   EndIf
   If eEvent(cyc)=94
    headline$="LEGEND PASSES AWAY"
    ChannelPitch chTheme,40000
-   Text x+5,y+125,charName$(char)+" was found dead at "+Lower$(His$(g))+" home last night.",1,1
-   Text x+5,y+150,"At the age of "+charAge(char)+", "+Lower$(He$(g))+" reportedly died of natural causes.",1,1
-   Text x+5,y+175,His$(g)+" contribution to wrestling will not be forgotten...",1,1
+   Text x+9,y+225,charName$(char)+" was found dead at "+Lower$(His$(g))+" home last night.",1,1
+   Text x+9,y+270,"At the age of "+charAge(char)+", "+Lower$(He$(g))+" reportedly died of natural causes.",1,1
+   Text x+9,y+315,His$(g)+" contribution to wrestling will not be forgotten...",1,1
   EndIf
   If eEvent(cyc)=95
    headline$="WRESTLER FOUND DEAD"
    ChannelPitch chTheme,40000
-   Text x+5,y+125,charName$(char)+" was found dead at "+Lower$(His$(g))+" home last night.",1,1
-   Text x+5,y+150,"The hedonistic "+charAge(char)+" year old was swimming in a lethal cocktail",1,1
-   Text x+5,y+175,"of drink and drugs - which eventually claimed "+Lower$(His$(g))+" life...",1,1
+   Text x+9,y+225,charName$(char)+" was found dead at "+Lower$(His$(g))+" home last night.",1,1
+   Text x+9,y+270,"The hedonistic "+charAge(char)+" year old was swimming in a lethal cocktail",1,1
+   Text x+9,y+315,"of drink and drugs - which eventually claimed "+Lower$(His$(g))+" life...",1,1
   EndIf
   If eEvent(cyc)=96
    headline$="SUICIDE SHOCK"
    ChannelPitch chTheme,40000
-   Text x+5,y+125,charName$(char)+" was found dead at "+Lower$(His$(g))+" home last night.",1,1
-   Text x+5,y+150,"The troubled "+charAge(char)+" year old is thought to have committed suicide.",1,1
-   Text x+5,y+175,His$(g)+" fleeting contribution to wrestling will be cherished...",1,1
+   Text x+9,y+225,charName$(char)+" was found dead at "+Lower$(His$(g))+" home last night.",1,1
+   Text x+9,y+270,"The troubled "+charAge(char)+" year old is thought to have committed suicide.",1,1
+   Text x+9,y+315,His$(g)+" fleeting contribution to wrestling will be cherished...",1,1
   EndIf
   ;corporate issues
   If eEvent(cyc)=100
    headline$="NEW KING IN TOWN"
-   Text x+5,y+138,charName$(fedBooker(fed))+" is the new booker of",1,1
-   Text x+5,y+166,fedName$(fed)+"...",1,1
+   Text x+9,y+248,charName$(fedBooker(fed))+" is the new booker of",1,1
+   Text x+9,y+299,fedName$(fed)+"...",1,1
   EndIf
   If eEvent(cyc)=101
    If eCharged(cyc)=0 Then PlaySound sCrowd(9) : eCharged(cyc)=1
    headline$="NEW WORLD CHAMP!"
-   Text x+5,y+138,charName$(fedChampWorld(fed))+" is the new World Champion",1,1
-   Text x+5,y+166,"of "+fedName$(fed)+"...",1,1
+   Text x+9,y+248,charName$(fedChampWorld(fed))+" is the new World Champion",1,1
+   Text x+9,y+299,"of "+fedName$(fed)+"...",1,1
   EndIf
   If eEvent(cyc)=102
    If eCharged(cyc)=0 Then PlaySound sCrowd(9) : eCharged(cyc)=1
    headline$="NEW INTER CHAMP!"
-   Text x+5,y+138,charName$(fedChampInter(fed))+" is the new Inter Champion",1,1
-   Text x+5,y+166,"of "+fedName$(fed)+"...",1,1
+   Text x+9,y+248,charName$(fedChampInter(fed))+" is the new Inter Champion",1,1
+   Text x+9,y+299,"of "+fedName$(fed)+"...",1,1
   EndIf
   If eEvent(cyc)=103
    If eCharged(cyc)=0 Then PlaySound sCrowd(9) : eCharged(cyc)=1
    headline$="NEW TAG CHAMPS!"
-   Text x+5,y+138,charName$(fedChampTag(fed,1))+" & "+charName$(fedChampTag(fed,2))+" are the new",1,1
-   Text x+5,y+166,"Tag Champions of "+fedName$(fed)+"...",1,1
-   DrawImage charPhoto(charFriend(char)),x+90,y+28
+   Text x+9,y+248,charName$(fedChampTag(fed,1))+" & "+charName$(fedChampTag(fed,2))+" are the new",1,1
+   Text x+9,y+299,"Tag Champions of "+fedName$(fed)+"...",1,1
+   DrawImage charPhoto(charFriend(char)),x+162,y+50
   EndIf 
   If eEvent(cyc)=104
    headline$="BAD DRAW"
-   Text x+5,y+138,fedName$(fed)+"'s popularity has suffered since",1,1
-   Text x+5,y+166,charName$(fedChampWorld(fed))+" became their World champion...",1,1
-   DrawImage charPhoto(fedChampWorld(fed)),x+90,y+28 
+   Text x+9,y+248,fedName$(fed)+"'s popularity has suffered since",1,1
+   Text x+9,y+299,charName$(fedChampWorld(fed))+" became their World champion...",1,1
+   DrawImage charPhoto(fedChampWorld(fed)),x+162,y+50 
   EndIf
   If eEvent(cyc)=105
    headline$="MOST VALUABLE PLAYER"
-   Text x+5,y+138,fedName$(fed)+"'s popularity has improved since",1,1
-   Text x+5,y+166,charName$(fedChampWorld(fed))+" became their World champion!",1,1
-   DrawImage charPhoto(fedChampWorld(fed)),x+90,y+28 
+   Text x+9,y+248,fedName$(fed)+"'s popularity has improved since",1,1
+   Text x+9,y+299,charName$(fedChampWorld(fed))+" became their World champion!",1,1
+   DrawImage charPhoto(fedChampWorld(fed)),x+162,y+50 
   EndIf
   If eEvent(cyc)=106
    headline$="THE NEXT BIG THING"
-   Text x+5,y+138,fedName$(fed)+"'s product has attracted",1,1
-   Text x+5,y+166,"a stronger following in recent weeks!",1,1
+   Text x+9,y+248,fedName$(fed)+"'s product has attracted",1,1
+   Text x+9,y+299,"a stronger following in recent weeks!",1,1
   EndIf
   If eEvent(cyc)=107
    headline$="OLD NEWS"
-   Text x+5,y+138,fedName$(fed)+"'s product has suffered",1,1
-   Text x+5,y+166,"a dip in popularity in recent weeks...",1,1
+   Text x+9,y+248,fedName$(fed)+"'s product has suffered",1,1
+   Text x+9,y+299,"a dip in popularity in recent weeks...",1,1
   EndIf
   If eEvent(cyc)=108
    headline$="KEEP IT CLEAN"
-   Text x+5,y+138,fedName$(fed)+" have been striving",1,1
-   Text x+5,y+166,"to deliver a more respectable product...",1,1
+   Text x+9,y+248,fedName$(fed)+" have been striving",1,1
+   Text x+9,y+299,"to deliver a more respectable product...",1,1
   EndIf
   If eEvent(cyc)=109
    headline$="DIRTY MOVES"
-   Text x+5,y+138,fedName$(fed)+" seem to be intent on",1,1
-   Text x+5,y+166,"delivering a more controversial product!",1,1
+   Text x+9,y+248,fedName$(fed)+" seem to be intent on",1,1
+   Text x+9,y+299,"delivering a more controversial product!",1,1
   EndIf
   If eEvent(cyc)=110
    headline$="KINGS OF THE RING"
    If eCharged(cyc)=0 Then PlaySound sCrowd(9) : eCharged(cyc)=1
-   Text x+5,y+138,fedName$(fed)+" have overtaken "+fedName$(eVariable(cyc)),1,1
-   Text x+5,y+166,"as the world's leading wrestling show!",1,1
+   Text x+9,y+248,fedName$(fed)+" have overtaken "+fedName$(eVariable(cyc)),1,1
+   Text x+9,y+299,"as the world's leading wrestling show!",1,1
   EndIf
   If eEvent(cyc)=111
    headline$="CROSSING THE LINE"
-   Text x+5,y+125,fedName$(fed)+" has acquired a hardcore",1,1
-   Text x+5,y+150,"reputation! The show now has a more relaxed",1,1
-   Text x+5,y+175,"attitude towards the use of weapons...",1,1
+   Text x+9,y+225,fedName$(fed)+" has acquired a hardcore",1,1
+   Text x+9,y+270,"reputation! The show now has a more relaxed",1,1
+   Text x+9,y+315,"attitude towards the use of weapons...",1,1
   EndIf
   If eEvent(cyc)=112
    headline$="RAISING THE STANDARD"
-   Text x+5,y+125,fedName$(fed)+" has emerged as a more",1,1
-   Text x+5,y+150,"respectable product. The show no longer condones",1,1
-   Text x+5,y+175,"the use of weapons in regular matches...",1,1
+   Text x+9,y+225,fedName$(fed)+" has emerged as a more",1,1
+   Text x+9,y+270,"respectable product. The show no longer condones",1,1
+   Text x+9,y+315,"the use of weapons in regular matches...",1,1
   EndIf
   ;scheduling issues
   If eEvent(cyc)=150
    headline$="NO SHOW"
    ChannelPitch chTheme,40000
-   Text x+5,y+138,fedName$(fed)+" will not stage a",1,1
-   Text x+5,y+166,"show tonight due to technical problems...",1,1
+   Text x+9,y+248,fedName$(fed)+" will not stage a",1,1
+   Text x+9,y+299,"show tonight due to technical problems...",1,1
   EndIf
   If eEvent(cyc)=151
    headline$="NO SHOW"
-   Text x+5,y+138,fedName$(fed)+" will not stage a show",1,1
-   Text x+5,y+166,"next week due to a scheduling mix-up...",1,1
+   Text x+9,y+248,fedName$(fed)+" will not stage a show",1,1
+   Text x+9,y+299,"next week due to a scheduling mix-up...",1,1
   EndIf
   If eEvent(cyc)=152
    headline$="DAY OF REST"
-   Text x+5,y+138,fedName$(fed)+" have scheduled a day off",1,1
-   Text x+5,y+166,"next month to give wrestlers time to recuperate...",1,1
+   Text x+9,y+248,fedName$(fed)+" have scheduled a day off",1,1
+   Text x+9,y+299,"next month to give wrestlers time to recuperate...",1,1
   EndIf
   If eEvent(cyc)=153
    headline$="ROYAL VISIT"
-   Text x+5,y+138,charName$(char)+" of "+fedName$(charFed(char))+" will",1,1
-   Text x+5,y+166,"be hosting a training session next week!",1,1
+   Text x+9,y+248,charName$(char)+" of "+fedName$(charFed(char))+" will",1,1
+   Text x+9,y+299,"be hosting a training session next week!",1,1
   EndIf
   If eEvent(cyc)=154
    headline$="TOUR ANNOUNCED"
-   Text x+5,y+138,fedName$(fed)+" have scheduled a series",1,1
-   Text x+5,y+166,"of PPV events over the forthcoming weeks!",1,1
+   Text x+9,y+248,fedName$(fed)+" have scheduled a series",1,1
+   Text x+9,y+299,"of PPV events over the forthcoming weeks!",1,1
   EndIf
   If eEvent(cyc)=155
    headline$="TOUGH LOVE"
-   Text x+5,y+138,"The wrestling industry will stage a special",1,1
-   Text x+5,y+166,"event next month to raise money for charity!",1,1
+   Text x+9,y+248,"The wrestling industry will stage a special",1,1
+   Text x+9,y+299,"event next month to raise money for charity!",1,1
   EndIf
   If eEvent(cyc)=156
    headline$="WAR OF THE WORLDS"
    If eCharged(cyc)=0 Then PlaySound sCrowd(6) : eCharged(cyc)=1
-   Text x+5,y+138,fedName$(eVariable(cyc))+" have challenged "+fedName$(fed),1,1
-   Text x+5,y+166,"to an inter-promotional showdown next month!",1,1
-   DrawImage charPhoto(fedBooker(eVariable(cyc))),x+90,y+28
+   Text x+9,y+248,fedName$(eVariable(cyc))+" have challenged "+fedName$(fed),1,1
+   Text x+9,y+299,"to an inter-promotional showdown next month!",1,1
+   DrawImage charPhoto(fedBooker(eVariable(cyc))),x+162,y+50
   EndIf
   If eEvent(cyc)=157
    headline$="TENSION MOUNTS"
-   Text x+5,y+138,"Remember to prepare for the big event that",1,1
-   Text x+5,y+166,fedName$(fed)+" have planned for next week!",1,1
+   Text x+9,y+248,"Remember to prepare for the big event that",1,1
+   Text x+9,y+299,fedName$(fed)+" have planned for next week!",1,1
   EndIf
   If eEvent(cyc)=158
    headline$="THE BIG DAY"
-   Text x+5,y+138,"Tonight is a big night for "+fedName$(fed)+"!",1,1
-   Text x+5,y+166,"Make sure you do the company proud...",1,1
+   Text x+9,y+248,"Tonight is a big night for "+fedName$(fed)+"!",1,1
+   Text x+9,y+299,"Make sure you do the company proud...",1,1
   EndIf
   ;missions reminder
   If eEvent(cyc)=201
    headline$="MISSION IMPOSSIBLE"
-   Text x+5,y+138,"Remember you're on a mission to",1,1
-   Text x+5,y+166,"attain a popularity rating of "+gamTarget(slot)+"%...",1,1
+   Text x+9,y+248,"Remember you're on a mission to",1,1
+   Text x+9,y+299,"attain a popularity rating of "+gamTarget(slot)+"%...",1,1
   EndIf
   If eEvent(cyc)=202
    headline$="MISSION IMPOSSIBLE"
-   Text x+5,y+138,"Remember you're on a mission to",1,1
-   Text x+5,y+166,"attain a strength rating of "+gamTarget(slot)+"%...",1,1
+   Text x+9,y+248,"Remember you're on a mission to",1,1
+   Text x+9,y+299,"attain a strength rating of "+gamTarget(slot)+"%...",1,1
   EndIf
   If eEvent(cyc)=203
    headline$="MISSION IMPOSSIBLE"
-   Text x+5,y+138,"Remember you're on a mission to",1,1
-   Text x+5,y+166,"attain a skill rating of "+gamTarget(slot)+"%...",1,1
+   Text x+9,y+248,"Remember you're on a mission to",1,1
+   Text x+9,y+299,"attain a skill rating of "+gamTarget(slot)+"%...",1,1
   EndIf
   If eEvent(cyc)=204
    headline$="MISSION IMPOSSIBLE"
-   Text x+5,y+138,"Remember you're on a mission to",1,1
-   Text x+5,y+166,"attain an agility rating of "+gamTarget(slot)+"%...",1,1
+   Text x+9,y+248,"Remember you're on a mission to",1,1
+   Text x+9,y+299,"attain an agility rating of "+gamTarget(slot)+"%...",1,1
   EndIf
   If eEvent(cyc)=205
    headline$="MISSION IMPOSSIBLE"
-   Text x+5,y+138,"Remember you're on a mission to",1,1
-   Text x+5,y+166,"attain a stamina rating of "+gamTarget(slot)+"%...",1,1
+   Text x+9,y+248,"Remember you're on a mission to",1,1
+   Text x+9,y+299,"attain a stamina rating of "+gamTarget(slot)+"%...",1,1
   EndIf
   If eEvent(cyc)=206
    headline$="MISSION IMPOSSIBLE"
-   Text x+5,y+138,"Remember you're on a mission to",1,1
-   Text x+5,y+166,"attain a toughness rating of "+gamTarget(slot)+"%...",1,1
+   Text x+9,y+248,"Remember you're on a mission to",1,1
+   Text x+9,y+299,"attain a toughness rating of "+gamTarget(slot)+"%...",1,1
   EndIf
   If eEvent(cyc)=207
    headline$="MISSION IMPOSSIBLE"
-   Text x+5,y+138,"Remember you're on a mission to",1,1
-   Text x+5,y+166,"attain an attitude rating of "+gamTarget(slot)+"%...",1,1
+   Text x+9,y+248,"Remember you're on a mission to",1,1
+   Text x+9,y+299,"attain an attitude rating of "+gamTarget(slot)+"%...",1,1
   EndIf
   If eEvent(cyc)=208
    headline$="MISSION IMPOSSIBLE"
-   Text x+5,y+138,"Remember you're on a mission to",1,1
-   Text x+5,y+166,"become a title holder!",1,1
+   Text x+9,y+248,"Remember you're on a mission to",1,1
+   Text x+9,y+299,"become a title holder!",1,1
   EndIf
   If eEvent(cyc)=209
    headline$="MISSION IMPOSSIBLE"
-   Text x+5,y+138,"Remember you're on a mission",1,1
-   Text x+5,y+166,"to get out of debt!",1,1
+   Text x+9,y+248,"Remember you're on a mission",1,1
+   Text x+9,y+299,"to get out of debt!",1,1
   EndIf
   If eEvent(cyc)=210
    headline$="MISSION IMPOSSIBLE"
-   Text x+5,y+138,"Remember you're on a mission to",1,1
-   Text x+5,y+166,"get signed by a major promotion!",1,1
+   Text x+9,y+248,"Remember you're on a mission to",1,1
+   Text x+9,y+299,"get signed by a major promotion!",1,1
   EndIf
   If eEvent(cyc)=211
    headline$="MISSION IMPOSSIBLE"
-   Text x+5,y+138,"Remember you're on a mission to",1,1
-   Text x+5,y+166,"injure one of your opponents!",1,1
+   Text x+9,y+248,"Remember you're on a mission to",1,1
+   Text x+9,y+299,"injure one of your opponents!",1,1
   EndIf
   ;display headline
   SetFont fontNews(3) : Color 0,0,0
-  Text x+5,y-65,headline$,1,1
+  Text x+9,y-117,headline$,1,1
   ;photo display
-  If char>0 Then DrawImage charPhoto(char),x+125,y+30
-  If char=0 And fedBooker(fed)>0 Then DrawImage charPhoto(fedBooker(fed)),x+125,y+30
+  If char>0 Then DrawImage charPhoto(char),x+225,y+54
+  If char=0 And fedBooker(fed)>0 Then DrawImage charPhoto(fedBooker(fed)),x+225,y+54
   ;prompt
   SetFont font(1)
-  If foc=10 Then Outline(">>> CLICK or ESCAPE to proceed >>>",x,y+210,130,130,130,255,255,255)
+  If foc=10 Then Outline(">>> CLICK or ESCAPE to proceed >>>",x,y+380,130,130,130,255,255,255)
  EndIf
  ;cursor
  DrawImage gCursor,MouseX()+10,MouseY()+9
@@ -1895,94 +1895,94 @@ While go=0
   x=rX#(400) : y=rY#(390)
   ;images
   DrawImage gMagazine,x,y
-  DrawImage gPhoto,x-128,y-5
+  DrawImage gPhoto,x-230,y-9
   Color 100,100,100
-  Rect x-259,y-72,262,134,0
-  Rect x-260,y-73,264,136,0
+  Rect x-361,y-76,262,134,0
+  Rect x-362,y-77,264,136,0
   Color 0,0,0
-  Rect x-256,y-69,256,127,0
+  Rect x-358,y-73,256,127,0
   ;smallprint
   SetFont fontNews(0) : Color 100,100,100
-  Text x-270,y-205,"Wrestling Review Magazine",0,1
+  Text x-486,y-369,"Wrestling Review Magazine",0,1
   dateline$=textWeek$(gamWeek(slot))+" of "+textMonth$(gamMonth(slot))+" "+gamYear(slot)
-  Text x,y-205,dateline$,1,1 
-  Text x+210,y-205,"news@wrestlingreview.com",1,1
+  Text x,y-369,dateline$,1,1 
+  Text x+378,y-369,"news@wrestlingreview.com",1,1
   ;intro
   SetFont fontNews(1) : Color 70,70,70
   If screenAgenda=10
-   Text x+130,y-50,"All the latest from the sparring",1,1
-   Text x+130,y-33,"session that "+charName$(gamChar(slot))+" held",1,1
+   Text x+234,y-90,"All the latest from the sparring",1,1
+   Text x+234,y-59,"session that "+charName$(gamChar(slot))+" held",1,1
   EndIf
   If matchOfficial=0
-   Text x+130,y-50,"All the latest from the",1,1
-   Text x+130,y-33,"chaos that erupted backstage",1,1
+   Text x+234,y-90,"All the latest from the",1,1
+   Text x+234,y-59,"chaos that erupted backstage",1,1
   EndIf
   If matchOfficial=1 And screenAgenda<>10
    If gamSchedule(slot,GetDate())=1 And fed=7
-    Text x+130,y-50,"All the latest from the training",1,1
-    Text x+130,y-33,"session that "+fedName$(fed)+" held",1,1
+    Text x+234,y-90,"All the latest from the training",1,1
+    Text x+234,y-59,"session that "+fedName$(fed)+" held",1,1
    EndIf
    If gamSchedule(slot,GetDate())=1 And fed<>7
-    Text x+130,y-50,"All the latest from the TV show",1,1
-    Text x+130,y-33,"that "+fedName$(fed)+" promoted",1,1
+    Text x+234,y-90,"All the latest from the TV show",1,1
+    Text x+234,y-59,"that "+fedName$(fed)+" promoted",1,1
    EndIf
    If gamSchedule(slot,GetDate())=2
-    Text x+130,y-50,"All the latest from the PPV event",1,1
-    Text x+130,y-33,"that "+fedName$(fed)+" promoted",1,1
+    Text x+234,y-90,"All the latest from the PPV event",1,1
+    Text x+234,y-59,"that "+fedName$(fed)+" promoted",1,1
    EndIf
    If gamSchedule(slot,GetDate())=3
-    Text x+130,y-50,"All the latest from the tribute",1,1
-    Text x+130,y-33,"to "+charName$(fedRoster(9,fedSize(9)))+", which took place",1,1
+    Text x+234,y-90,"All the latest from the tribute",1,1
+    Text x+234,y-59,"to "+charName$(fedRoster(9,fedSize(9)))+", which took place",1,1
    EndIf
    If gamSchedule(slot,GetDate())=4
-    Text x+130,y-50,"All the latest from the charity show",1,1
-    Text x+130,y-33,"that various promotions took part in",1,1
+    Text x+234,y-90,"All the latest from the charity show",1,1
+    Text x+234,y-59,"that various promotions took part in",1,1
    EndIf
    If gamSchedule(slot,GetDate())=5
-    Text x+130,y-50,"All the latest from the inter-",1,1
-    Text x+130,y-33,"promotional contest that took place",1,1
+    Text x+234,y-90,"All the latest from the inter-",1,1
+    Text x+234,y-59,"promotional contest that took place",1,1
    EndIf
   EndIf
-  Text x+130,y-16,"on the "+dateline$+":",1,1
+  Text x+234,y-29,"on the "+dateline$+":",1,1
   ;result
   SetFont fontNews(1) : Color 70,70,70
   If screenAgenda=10
-   Text x+130,y+20,"The session was brought",1,1
-   Text x+130,y+37,"to an end at "+matchMins+":"+Dig$(matchSecs,10)+"...",1,1
+   Text x+234,y+36,"The session was brought",1,1
+   Text x+234,y+67,"to an end at "+matchMins+":"+Dig$(matchSecs,10)+"...",1,1
   EndIf 
   If matchOfficial=0
    If matchWinner>0
     If matchTeams>0 Then namer$=charName$(pChar(matchWinner))+"'s team" Else namer$=charName$(pChar(matchWinner))
-    Text x+130,y+20,namer$+" emerged victorious",1,1
-    Text x+130,y+37,"in a backstage brawl...",1,1
+    Text x+234,y+36,namer$+" emerged victorious",1,1
+    Text x+234,y+67,"in a backstage brawl...",1,1
    EndIf
    If matchWinner=0
-    Text x+130,y+20,"A backstage brawl was stopped",1,1
-    Text x+130,y+37,"before it got out of hand...",1,1
+    Text x+234,y+36,"A backstage brawl was stopped",1,1
+    Text x+234,y+67,"before it got out of hand...",1,1
    EndIf
   EndIf
   If matchOfficial=1 And screenAgenda<>10 And gamSchedule(slot,GetDate())<>5
    If matchWinner>0
     If matchTeams>0 Then namer$=charName$(pChar(matchWinner))+"'s team" Else namer$=charName$(pChar(matchWinner))
-    Text x+130,y+20,namer$+" emerged victorious",1,1
+    Text x+234,y+36,namer$+" emerged victorious",1,1
     If gamGimmick(slot,GetDate())>0 Then namer$=textGimmick$(gamGimmick(slot,GetDate()))+" " Else namer$=""
-    Text x+130,y+37,"in a "+namer$+"'"+textMatch$(matchPreset)+"'...",1,1
+    Text x+234,y+67,"in a "+namer$+"'"+textMatch$(matchPreset)+"'...",1,1
    EndIf
    If matchWinner=0
     If gamGimmick(slot,GetDate())>0 Then namer$=textGimmick$(gamGimmick(slot,GetDate()))+" " Else namer$=""
-    Text x+130,y+20,"A "+namer$+"'"+textMatch$(matchPreset)+"'",1,1
-    Text x+130,y+37,"failed to produce a winner...",1,1
+    Text x+234,y+36,"A "+namer$+"'"+textMatch$(matchPreset)+"'",1,1
+    Text x+234,y+67,"failed to produce a winner...",1,1
    EndIf
   EndIf
   If screenAgenda<>10 And gamSchedule(slot,GetDate())=5
    If matchWinner>0
     If matchTeams>0 Then namer$=charName$(pChar(matchWinner))+"'s team" Else namer$=charName$(pChar(matchWinner))
-    Text x+130,y+20,namer$+" notched up a victory",1,1
-    Text x+130,y+37,"for the "+fedName$(charFed(pChar(matchWinner)))+" camp...",1,1
+    Text x+234,y+36,namer$+" notched up a victory",1,1
+    Text x+234,y+67,"for the "+fedName$(charFed(pChar(matchWinner)))+" camp...",1,1
    EndIf
    If matchWinner=0
-    Text x+130,y+20,"A match between "+fedName$(charFed(gamChar(slot)))+" and",1,1
-    Text x+130,y+37,fedName$(gamInterProm(slot,GetDate()))+" ended in a tie...",1,1
+    Text x+234,y+36,"A match between "+fedName$(charFed(gamChar(slot)))+" and",1,1
+    Text x+234,y+67,fedName$(gamInterProm(slot,GetDate()))+" ended in a tie...",1,1
    EndIf
   EndIf
   ;REPORTS
@@ -1992,209 +1992,209 @@ While go=0
    SetFont fontNews(2) : Color 0,0,0
    ;misc explanations
    If charEvent(char)=-1
-    Text x+20,y+105,charName$(char)+"'s progress is being hindered",1,1
-    Text x+20,y+133,"by the limitations of "+fedName$(fed)+"...",1,1
+    Text x+36,y+189,charName$(char)+"'s progress is being hindered",1,1
+    Text x+36,y+239,"by the limitations of "+fedName$(fed)+"...",1,1
    EndIf
    If charEvent(char)=-2
-    Text x+20,y+105,charName$(char)+" has reached the limit",1,1
-    Text x+20,y+133,"of "+fedName$(fed)+"'s popularity...",1,1
+    Text x+36,y+189,charName$(char)+" has reached the limit",1,1
+    Text x+36,y+239,"of "+fedName$(fed)+"'s popularity...",1,1
    EndIf
    If charEvent(char)=-3
-    Text x+20,y+105,charName$(char)+"'s reputation has been tainted",1,1
-    Text x+20,y+133,"by being involved in that altercation...",1,1
+    Text x+36,y+189,charName$(char)+"'s reputation has been tainted",1,1
+    Text x+36,y+239,"by being involved in that altercation...",1,1
    EndIf
    ;standard result descriptions
    eliminator=0
    If pEliminated(cyc) And no_wrestlers>2 Then eliminator=1
    If charEvent(char)=0 And matchWinner=0 And eliminator=0
-    Text x+20,y+105,charName$(char)+"'s status hasn't been affected",1,1
-    Text x+20,y+133,"by the result of that match...",1,1
+    Text x+36,y+189,charName$(char)+"'s status hasn't been affected",1,1
+    Text x+36,y+239,"by the result of that match...",1,1
    EndIf
    If charEvent(char)=0 And matchWinner>0 And matchTeams=<0 And matchWinner=cyc And eliminator=0
-    Text x+20,y+105,charName$(char)+"'s profile has improved by",1,1
-    Text x+20,y+133,"securing a victory in that match...",1,1
+    Text x+36,y+189,charName$(char)+"'s profile has improved by",1,1
+    Text x+36,y+239,"securing a victory in that match...",1,1
    EndIf
    If charEvent(char)=0 And matchWinner>0 And matchTeams=<0 And matchWinner<>cyc And eliminator=0
-    Text x+20,y+105,charName$(char)+"'s profile has suffered by",1,1
-    Text x+20,y+133,"incurring a loss in that match...",1,1
+    Text x+36,y+189,charName$(char)+"'s profile has suffered by",1,1
+    Text x+36,y+239,"incurring a loss in that match...",1,1
    EndIf
    If charEvent(char)=0 And matchWinner>0 And matchTeams>0 And pTeam(matchWinner)=pTeam(cyc) And eliminator=0
-    Text x+20,y+105,charName$(char)+"'s profile has improved by",1,1
-    Text x+20,y+133,"being on the winning team in that match...",1,1
+    Text x+36,y+189,charName$(char)+"'s profile has improved by",1,1
+    Text x+36,y+239,"being on the winning team in that match...",1,1
    EndIf
    If charEvent(char)=0 And matchWinner>0 And matchTeams>0 And pTeam(matchWinner)<>pTeam(cyc) And eliminator=0
-    Text x+20,y+105,charName$(char)+"'s profile has suffered by",1,1
-    Text x+20,y+133,"being on the losing team in that match...",1,1
+    Text x+36,y+189,charName$(char)+"'s profile has suffered by",1,1
+    Text x+36,y+239,"being on the losing team in that match...",1,1
    EndIf
    If charEvent(char)=0 And eliminator=1
-    Text x+20,y+105,charName$(char)+"'s profile has suffered by",1,1
-    Text x+20,y+133,"failing to survive until the end of that match...",1,1
+    Text x+36,y+189,charName$(char)+"'s profile has suffered by",1,1
+    Text x+36,y+239,"failing to survive until the end of that match...",1,1
    EndIf
    ;win descriptions
    If charEvent(char)=1
-    Text x+20,y+105,charName$(char)+"'s profile has improved significantly",1,1
-    Text x+20,y+133,"by securing a victory at a high profile event!",1,1
+    Text x+36,y+189,charName$(char)+"'s profile has improved significantly",1,1
+    Text x+36,y+239,"by securing a victory at a high profile event!",1,1
    EndIf
    If charEvent(char)=2
-    Text x+20,y+105,charName$(char)+"'s profile has improved significantly",1,1
-    Text x+20,y+133,"by being the winning participant in that match!",1,1
+    Text x+36,y+189,charName$(char)+"'s profile has improved significantly",1,1
+    Text x+36,y+239,"by being the winning participant in that match!",1,1
    EndIf
    If charEvent(char)=3
-    Text x+20,y+105,charName$(char)+"'s profile has improved significantly",1,1
-    Text x+20,y+133,"by defending the World Championship in that match!",1,1
+    Text x+36,y+189,charName$(char)+"'s profile has improved significantly",1,1
+    Text x+36,y+239,"by defending the World Championship in that match!",1,1
    EndIf
    If charEvent(char)=4
-    Text x+20,y+105,charName$(char)+"'s profile has improved significantly",1,1
-    Text x+20,y+133,"by defending the Inter Championship in that match!",1,1
+    Text x+36,y+189,charName$(char)+"'s profile has improved significantly",1,1
+    Text x+36,y+239,"by defending the Inter Championship in that match!",1,1
    EndIf
    If charEvent(char)=5
-    Text x+20,y+105,charName$(char)+"'s profile has improved significantly",1,1
-    Text x+20,y+133,"by defending the Tag Championships in that match!",1,1
+    Text x+36,y+189,charName$(char)+"'s profile has improved significantly",1,1
+    Text x+36,y+239,"by defending the Tag Championships in that match!",1,1
    EndIf 
    If charEvent(char)=6
-    Text x+20,y+105,charName$(char)+"'s profile has improved significantly",1,1
-    Text x+20,y+133,"by defeating a superior opponent in that match!",1,1
+    Text x+36,y+189,charName$(char)+"'s profile has improved significantly",1,1
+    Text x+36,y+239,"by defeating a superior opponent in that match!",1,1
    EndIf
    If charEvent(char)=7
-    Text x+20,y+105,charName$(char)+"'s profile has improved significantly",1,1
-    Text x+20,y+133,"by winning so convincingly in that match!",1,1
+    Text x+36,y+189,charName$(char)+"'s profile has improved significantly",1,1
+    Text x+36,y+239,"by winning so convincingly in that match!",1,1
    EndIf
    If charEvent(char)=8
-    Text x+20,y+105,charName$(char)+" has raised the profile of",1,1
-    Text x+20,y+133,fedName$(charFed(char))+" by winning that match!",1,1
+    Text x+36,y+189,charName$(char)+" has raised the profile of",1,1
+    Text x+36,y+239,fedName$(charFed(char))+" by winning that match!",1,1
    EndIf
    ;loss descriptions
    If charEvent(char)=10
-    Text x+20,y+105,charName$(char)+"'s profile has suffered considerably",1,1
-    Text x+20,y+133,"by bailing out of that match before it had finished!",1,1
+    Text x+36,y+189,charName$(char)+"'s profile has suffered considerably",1,1
+    Text x+36,y+239,"by bailing out of that match before it had finished!",1,1
    EndIf
    If charEvent(char)=11
-    Text x+20,y+105,charName$(char)+"'s profile has suffered considerably",1,1
-    Text x+20,y+133,"by incurring a loss at a high profile event...",1,1
+    Text x+36,y+189,charName$(char)+"'s profile has suffered considerably",1,1
+    Text x+36,y+239,"by incurring a loss at a high profile event...",1,1
    EndIf
    If charEvent(char)=12
-    Text x+20,y+105,charName$(char)+"'s profile has suffered considerably",1,1
-    Text x+20,y+133,"by being the losing participant in that match...",1,1
+    Text x+36,y+189,charName$(char)+"'s profile has suffered considerably",1,1
+    Text x+36,y+239,"by being the losing participant in that match...",1,1
    EndIf
    If charEvent(char)=13
-    Text x+20,y+105,charName$(char)+"'s profile has suffered considerably",1,1
-    Text x+20,y+133,"by losing to a lesser opponent in that match...",1,1
+    Text x+36,y+189,charName$(char)+"'s profile has suffered considerably",1,1
+    Text x+36,y+239,"by losing to a lesser opponent in that match...",1,1
    EndIf
    If charEvent(char)=14
-    Text x+20,y+105,charName$(char)+"'s profile has suffered considerably",1,1
-    Text x+20,y+133,"by being defeated so easily in that match...",1,1
+    Text x+36,y+189,charName$(char)+"'s profile has suffered considerably",1,1
+    Text x+36,y+239,"by being defeated so easily in that match...",1,1
    EndIf
    If charEvent(char)=15
-    Text x+20,y+105,charName$(char)+" has damaged the profile of",1,1
-    Text x+20,y+133,fedName$(charFed(char))+" by losing that match...",1,1
+    Text x+36,y+189,charName$(char)+" has damaged the profile of",1,1
+    Text x+36,y+239,fedName$(charFed(char))+" by losing that match...",1,1
    EndIf
    ;injury events
    If charEvent(char)=20
-    Text x+20,y+105,charName$(char)+" incurred some serious facial damage",1,1
-    Text x+20,y+133,"and will be nursing the wounds until next week...",1,1
+    Text x+36,y+189,charName$(char)+" incurred some serious facial damage",1,1
+    Text x+36,y+239,"and will be nursing the wounds until next week...",1,1
    EndIf
    If charEvent(char)=21
-    Text x+20,y+105,charName$(char)+" incurred a minor injury in that match",1,1
-    Text x+20,y+133,"and will be out of action for the next "+charInjured(char)+" weeks...",1,1
+    Text x+36,y+189,charName$(char)+" incurred a minor injury in that match",1,1
+    Text x+36,y+239,"and will be out of action for the next "+charInjured(char)+" weeks...",1,1
    EndIf
    If charEvent(char)=22
     ChannelPitch chTheme,40000
-    Text x+20,y+95,charName$(char)+" sustained a serious injury in that match",1,1
-    Text x+20,y+120,"and will be out of action for the next "+charInjured(char)+" weeks.",1,1
-    Text x+20,y+145,"Even then, "+Lower$(He$(g))+" may be a shadow of "+Lower$(His$(g))+" former self...",1,1
+    Text x+36,y+171,charName$(char)+" sustained a serious injury in that match",1,1
+    Text x+36,y+216,"and will be out of action for the next "+charInjured(char)+" weeks.",1,1
+    Text x+36,y+261,"Even then, "+Lower$(He$(g))+" may be a shadow of "+Lower$(His$(g))+" former self...",1,1
    EndIf
    If charEvent(char)=23
     ChannelPitch chTheme,40000
-    Text x+20,y+95,charName$(char)+" sustained an extremely serious injury in that match.",1,1
-    Text x+20,y+120,He$(g)+" was rushed to hospital, where it's feared "+Lower$(He$(g))+" may be paralysed.",1,1
-    Text x+20,y+145,His$(g)+" wrestling career is almost certainly over...",1,1
+    Text x+36,y+171,charName$(char)+" sustained an extremely serious injury in that match.",1,1
+    Text x+36,y+216,He$(g)+" was rushed to hospital, where it's feared "+Lower$(He$(g))+" may be paralysed.",1,1
+    Text x+36,y+261,His$(g)+" wrestling career is almost certainly over...",1,1
    EndIf
    If charEvent(char)=24
     ChannelPitch chTheme,40000
-    Text x+20,y+95,charName$(char)+" sustained an extremely serious injury in that match.",1,1
-    Text x+20,y+120,"Despite their best efforts, medics were not able to resuscitate "+Lower$(Him$(g))+".",1,1
-    Text x+20,y+145,charName$(char)+" has died as a result of "+Lower$(His$(g))+" injuries. "+He$(g)+" was "+charAge(char)+"...",1,1
+    Text x+36,y+171,charName$(char)+" sustained an extremely serious injury in that match.",1,1
+    Text x+36,y+216,"Despite their best efforts, medics were not able to resuscitate "+Lower$(Him$(g))+".",1,1
+    Text x+36,y+261,charName$(char)+" has died as a result of "+Lower$(His$(g))+" injuries. "+He$(g)+" was "+charAge(char)+"...",1,1
    EndIf
    If charEvent(char)=25
-    Text x+20,y+105,"It seems "+charName$(char)+"'s injury was a false alarm!",1,1
-    Text x+20,y+133,"On closer inspection, there was nothing to worry about...",1,1
+    Text x+36,y+189,"It seems "+charName$(char)+"'s injury was a false alarm!",1,1
+    Text x+36,y+239,"On closer inspection, there was nothing to worry about...",1,1
    EndIf
    ;stipulation acknowledgements
    If charEvent(char)=30
     If eCharged(cyc)=0 Then PlaySound sCrowd(9) : eCharged(cyc)=1
-    Text x+20,y+105,"Congratulations to "+charName$(char)+" for becoming",1,1
-    Text x+20,y+133,"the World Champion of "+fedName$(fed)+"!",1,1
+    Text x+36,y+189,"Congratulations to "+charName$(char)+" for becoming",1,1
+    Text x+36,y+239,"the World Champion of "+fedName$(fed)+"!",1,1
    EndIf
    If charEvent(char)=31
     If eCharged(cyc)=0 Then PlaySound sCrowd(9) : eCharged(cyc)=1
-    Text x+20,y+105,"Congratulations to "+charName$(char)+" for becoming",1,1
-    Text x+20,y+133,"the Inter Champion of "+fedName$(fed)+"!",1,1
+    Text x+36,y+189,"Congratulations to "+charName$(char)+" for becoming",1,1
+    Text x+36,y+239,"the Inter Champion of "+fedName$(fed)+"!",1,1
    EndIf
    If charEvent(char)=32
     If eCharged(cyc)=0 Then PlaySound sCrowd(9) : eCharged(cyc)=1
-    Text x+20,y+105,"Congratulations to "+charName$(char)+" for becoming one",1,1
-    Text x+20,y+133,"of the Tag Champions of "+fedName$(fed)+"!",1,1
+    Text x+36,y+189,"Congratulations to "+charName$(char)+" for becoming one",1,1
+    Text x+36,y+239,"of the Tag Champions of "+fedName$(fed)+"!",1,1
    EndIf
    If charEvent(char)=33
     If eCharged(cyc)=0 Then PlaySound sCrowd(8) : eCharged(cyc)=1
-    Text x+20,y+105,"In accordance with the stipulations of that match, ",1,1
-    Text x+20,y+133,charName$(char)+" must now lose all of "+Lower$(His$(g))+" hair!",1,1
+    Text x+36,y+189,"In accordance with the stipulations of that match, ",1,1
+    Text x+36,y+239,charName$(char)+" must now lose all of "+Lower$(His$(g))+" hair!",1,1
    EndIf
    If charEvent(char)=34
     If eCharged(cyc)=0 Then PlaySound sCrowd(6) : eCharged(cyc)=1
-    Text x+20,y+105,"In accordance with the stipulations of that match, ",1,1
-    Text x+20,y+133,charName$(char)+" must leave "+fedName$(fed)+"!",1,1
+    Text x+36,y+189,"In accordance with the stipulations of that match, ",1,1
+    Text x+36,y+239,charName$(char)+" must leave "+fedName$(fed)+"!",1,1
    EndIf
    If charEvent(char)=35
     If eCharged(cyc)=0 Then PlaySound sCrowd(9) : eCharged(cyc)=1
-    Text x+20,y+105,"In accordance with the stipulations of that match, ",1,1
-    Text x+20,y+133,charName$(char)+" will receive a World title shot!",1,1
+    Text x+36,y+189,"In accordance with the stipulations of that match, ",1,1
+    Text x+36,y+239,charName$(char)+" will receive a World title shot!",1,1
    EndIf
    If charEvent(char)=36
     If eCharged(cyc)=0 Then PlaySound sCrowd(9) : eCharged(cyc)=1
-    Text x+20,y+105,"In accordance with the stipulations of that match, ",1,1
-    Text x+20,y+133,charName$(char)+" will receive an Inter title shot!",1,1
+    Text x+36,y+189,"In accordance with the stipulations of that match, ",1,1
+    Text x+36,y+239,charName$(char)+" will receive an Inter title shot!",1,1
    EndIf
    If charEvent(char)=37
     If eCharged(cyc)=0 Then PlaySound sCrowd(9) : eCharged(cyc)=1
-    Text x+20,y+105,fedName$(charFed(char))+" thwarted the",1,1
-    Text x+20,y+133,"attempt to sabotage tonight's show!",1,1
+    Text x+36,y+189,fedName$(charFed(char))+" thwarted the",1,1
+    Text x+36,y+239,"attempt to sabotage tonight's show!",1,1
    EndIf
    If charEvent(char)=38
     If eCharged(cyc)=0 Then PlaySound sCrowd(3) : eCharged(cyc)=1
-    Text x+20,y+105,fedName$(charFed(char))+" proceeded to",1,1
-    Text x+20,y+133,"ruin the venue for tonight's show...",1,1
+    Text x+36,y+189,fedName$(charFed(char))+" proceeded to",1,1
+    Text x+36,y+239,"ruin the venue for tonight's show...",1,1
     ChannelPitch chTheme,40000
    EndIf
    If charEvent(char)=39
     If eCharged(cyc)=0 Then PlaySound sCrowd(9) : eCharged(cyc)=1
-    Text x+20,y+105,charName$(char)+" successfully negotiated",1,1
-    Text x+20,y+133,"a pay rise because of that protest!",1,1
+    Text x+36,y+189,charName$(char)+" successfully negotiated",1,1
+    Text x+36,y+239,"a pay rise because of that protest!",1,1
    EndIf
    If charEvent(char)=40
-    Text x+20,y+105,charName$(char)+" failed to negotiate",1,1
-    Text x+20,y+133,"a pay rise after that performance...",1,1
+    Text x+36,y+189,charName$(char)+" failed to negotiate",1,1
+    Text x+36,y+239,"a pay rise after that performance...",1,1
    EndIf
    If charEvent(char)=41
     If eCharged(cyc)=0 Then PlaySound sCrowd(7) : eCharged(cyc)=1
-    Text x+20,y+105,charName$(char)+"'s controversial comments",1,1
-    Text x+20,y+133,"have made "+Him$(g)+" the talk of the industry!",1,1
+    Text x+36,y+189,charName$(char)+"'s controversial comments",1,1
+    Text x+36,y+239,"have made "+Him$(g)+" the talk of the industry!",1,1
    EndIf
    If charEvent(char)=42
     If eCharged(cyc)=0 Then PlaySound sCrowd(8) : eCharged(cyc)=1
-    Text x+20,y+105,charName$(char)+"'s advertising campaign",1,1
-    Text x+20,y+133,"has made "+Him$(g)+" a laughing stock!",1,1
+    Text x+36,y+189,charName$(char)+"'s advertising campaign",1,1
+    Text x+36,y+239,"has made "+Him$(g)+" a laughing stock!",1,1
    EndIf
    If charEvent(char)=43
     If eCharged(cyc)=0 Then PlaySound sCrowd(9) : eCharged(cyc)=1
-    Text x+20,y+105,charName$(char)+" has earned a title shot",1,1
-    Text x+20,y+133,"by winning such a prestigious contest!",1,1
+    Text x+36,y+189,charName$(char)+" has earned a title shot",1,1
+    Text x+36,y+239,"by winning such a prestigious contest!",1,1
    EndIf
   EndIf
   ;prompt
   If foc=10 And gotim>50
    SetFont font(1)
-   Outline(">>> CLICK or ESCAPE to proceed >>>",x,y+190,120,120,120,250,250,250)
+   Outline(">>> CLICK or ESCAPE to proceed >>>",x,y+310,120,120,120,250,250,250)
   EndIf
  EndIf
  ;cursor
@@ -2413,23 +2413,42 @@ End Function
 Function HighlightStats()
  x=rX#(170) : y=rY#(25)
  Color 250,130,60
- If foc=1 Then Rect x-41,y+4,102,7,0
- If foc=2 Then Rect x-92,y+14,96,15,0
- If foc=3 Then Rect x-82,y+29,86,15,0
- If foc=4 Then Rect x-54,y+44,58,15,0
- If foc=5 Then Rect x-68,y+59,72,15,0
- If foc=6 Then Rect x+24,y+14,84,15,0
- If foc=7 Then Rect x+8,y+29,100,15,0
- If foc=8 Then Rect x+26,y+44,82,15,0
- If foc=9 Then Rect x+10,y+59,98,15,0
+ If foc=1 Then Rect x-102,y+13,204,14,0
+ If foc>1 And foc<10
+  SetFont font(1)
+  row=41+(((foc-2) Mod 4)*32)
+  right=x-7+Int(StringWidth("99")/2)
+  If foc=2 Then left=x-203 : label$="Popularity:"
+  If foc=3 Then left=x-183 : label$="Strength:"
+  If foc=4 Then left=x-109 : label$="Skill:"
+  If foc=5 Then left=x-143 : label$="Agility:"
+  If foc=6 Then left=x+69 : label$="Stamina:" : right=x+237+Int(StringWidth("99")/2)
+  If foc=7 Then left=x+31 : label$="Toughness:" : right=x+237+Int(StringWidth("99")/2)
+  If foc=8 Then left=x+73 : label$="Attitude:" : right=x+237+Int(StringWidth("99")/2)
+  If foc=9 Then left=x+38 : label$="Happiness:" : right=x+237+Int(StringWidth("99")/2)
+  labelRight=left+StringWidth(label$)
+  If labelRight>right Then right=labelRight
+  Rect left-2,y+row-12,right-left+4,34,0
+ EndIf
 End Function
 
 ;HIGHLIGHT FED STAT CHANGES
 Function HighlightFedStats()
  x=rX#(180) : y=rY#(35)
  Color 250,130,60
- If foc=1 Then Rect x-79,y+13,135,17,0
- If foc=2 Then Rect x-81,y+29,137,17,0
+ SetFont font(1)
+ If foc=1 Then
+  left=x-153 : right=x+122+Int(StringWidth("/100")/2)
+  labelRight=left+StringWidth("Popularity:")
+  If labelRight>right Then right=labelRight
+  Rect left-2,y+32,right-left+4,34,0
+ EndIf
+ If foc=2 Then
+  left=x-166 : right=x+122+Int(StringWidth("/100")/2)
+  labelRight=left+StringWidth("Reputation:")
+  If labelRight>right Then right=labelRight
+  Rect left-2,y+64,right-left+4,34,0
+ EndIf
 End Function
 
 ;SHOW STAT PROGRESS

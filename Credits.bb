@@ -273,7 +273,7 @@ While go=0
  Outline("UP/DOWN=Highlight option, ENTER=Proceed, ESC=Quit",rX#(400),rY#(580),0,0,0,85,85,85)
  ;version
  SetFont font(0)
- Outline("Version 1.6",rX#(400)+195,rY#(200)+85,0,0,0,10,20,40)
+ Outline("Version 2.0",rX#(400)+295,rY#(200)+185,127,127,127,195,195,195)
  ;cursor
  If foc<>oldfoc Then oldfoc=foc : PlaySound sMenuSelect 
  DrawImage gCursor,MouseX()+10,MouseY()+9

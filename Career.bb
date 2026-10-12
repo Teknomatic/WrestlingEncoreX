@@ -122,13 +122,13 @@ While go=0
  For cyc=1 To 3
   If gamChar(cyc)>0 Then namer$=charName$(gamChar(cyc)) Else namer$="EMPTY"
   DrawOption(cyc,400,y,cyc+". "+namer$,"",0,0)
-  If gamChar(cyc)>0 Then DrawImage gTape,rX#(400)-80,rY#(y)-15
+  If gamChar(cyc)>0 Then DrawImage gTape,rX#(400)-160,rY#(y)-15
   If foc=cyc And gamChar(cyc)>0 And gotim>5 Then DrawProfile(gamChar(cyc),-1,y-40)
   y=y+45
  Next
  ;options
  DrawOption(4,400,510,"HALL OF FAME","",0,0)
- DrawImage gBelt(0),rX#(400),rY#(510)-14
+ DrawImage gBelt(0),rX#(400),rY#(510)-42
  DrawOption(5,400,550,"<<< EXIT <<<","",0,0)
  ;inst
  Outline("UP/DOWN=Select slot, BACKSPACE=Clear slot, ENTER=Proceed, ESC=Exit",rX#(400),rY#(580),0,0,0,85,85,85)
@@ -202,7 +202,9 @@ EndIf
 period=1000/FPS
 time=MilliSecs()-period
 ;MAIN LOOP
-scroller=700-(gamMonth(slot)*230)
+firstWeekStep=160 : weekStep=100 : monthStep=460 
+scrollT=rX#(400)-(((gamMonth(slot)-1)*monthStep)+firstWeekStep)
+scroller=scrollT
 foc=1 : oldfoc=foc : screenAgenda=0
 go=0 : gotim=0 : keytim=10
 While go=0
@@ -250,20 +252,20 @@ While go=0
 	
 	;SCROLLING
 	;browse with keys
-	If KeyDown(203) Or JoyXDir()=-1 Then scroller=scroller+15 : scrollTim=50
-	If KeyDown(205) Or JoyXDir()=1 Then scroller=scroller-15 : scrollTim=50
+    If KeyDown(203) Or JoyXDir()=-1 Then scroller=scroller+30 : scrollTim=50
+    If KeyDown(205) Or JoyXDir()=1 Then scroller=scroller-30 : scrollTim=50
 	;browse with mouse
 	If foc=99 And MouseDown(1) Then scroller=scroller+MouseXSpeed() : scrollTim=50
 	;auto scrolling
 	scrollTim=scrollTim-1
 	If scrollTim<1 Then scrollTim=0
 	If scrollTim=0 
-	 scrollT=rX#(470)-(gamMonth(slot)*230) 
-	 If scroller<scrollT Then scroller=scroller+10
-	 If scroller>scrollT Then scroller=scroller-10
+     scrollT=rX#(400)-(((gamMonth(slot)-1)*monthStep)+firstWeekStep)
+     If scroller<scrollT Then scroller=scroller+20
+     If scroller>scrollT Then scroller=scroller-20
 	EndIf
-	If scroller>240 Then scroller=240
-	If scroller<-2290 Then scroller=-2290
+    If scroller>rX#(400)-firstWeekStep Then scroller=rX#(400)-firstWeekStep
+    If scroller<rX#(400)-(12*monthStep) Then scroller=rX#(400)-(12*monthStep)
 	
  UpdateWorld
  Next
@@ -288,29 +290,29 @@ While go=0
  For cyc=1 To 48
   dater=dater+1
   If dater>4 Then dater=1 : monther=monther+1
-  If dater=1 Then x=x+80 Else x=x+50
+    If dater=1 Then x=x+firstWeekStep Else x=x+weekStep
   ;highlighter
   If cyc=GetDate()
-   DrawImage gDate(11),x+scroller,y
-   DrawImageRect charPhoto(gamChar(slot)),x+scroller,y-15,0,0,70,55
+   DrawImage gDate(11),(x-150)+scroller,y-20
+   DrawImageRect charPhoto(gamChar(slot)),(x-150)+scroller,y-35,0,0,140,110
   EndIf
   ;schedule icons
-  If gamSchedule(slot,cyc)=-1 Then DrawImage gInjury,x+scroller,y ;injured
-  If gamSchedule(slot,cyc)=>0 And gamSchedule(slot,cyc)=<5 Then DrawImage gDate(gamSchedule(slot,cyc)),x+scroller,y ;event
-  If cyc<GetDate() Then DrawImage gDate(10),x+scroller,y ;history
+  If gamSchedule(slot,cyc)=-1 Then DrawImage gInjury,(x-150)+scroller,y ;injured
+  If gamSchedule(slot,cyc)=>0 And gamSchedule(slot,cyc)=<5 Then DrawImage gDate(gamSchedule(slot,cyc)),(x-150)+scroller,y-20 ;event
+  If cyc<GetDate() Then DrawImage gDate(10),(x-150)+scroller,y-20 ;history
   ;result
   If cyc<GetDate() And gamSchedule(slot,cyc)=>1 And gamSchedule(slot,cyc)=<5 And gamResult(slot,cyc)>0 
-   DrawImage gResult(gamResult(slot,cyc)),x+scroller,y
+   DrawImage gResult(gamResult(slot,cyc)),(x-150)+scroller,y-20
   EndIf
   ;month boxes
   If dater=1 
    If gamMonth(slot)=monther
-    DrawImage gMenu(5),(x+75)+scroller,y+46
-    Outline(textMonth$(monther),(x+75)+scroller,y+45,190,190,190,75,75,75)
-    Outline(textWeek$(gamWeek(slot))+" of "+textMonth$(gamMonth(slot))+" "+gamYear(slot),(x+75)+scroller,y+70,70,60,50,255,240,220)
+    DrawImage gMenu(5),(x)+scroller,y+46
+    Outline(textMonth$(monther),(x)+scroller,y+45,190,190,190,75,75,75)
+    Outline(textWeek$(gamWeek(slot))+" of "+textMonth$(gamMonth(slot))+" "+gamYear(slot),x+scroller,y+100,70,60,50,255,240,220)
    Else
-    DrawImage gMenu(6),(x+75)+scroller,y+46
-    Outline(textMonth$(monther),(x+75)+scroller,y+45,120,120,120,0,0,0)
+    DrawImage gMenu(6),(x)+scroller,y+46
+    Outline(textMonth$(monther),(x)+scroller,y+45,120,120,120,0,0,0)
    EndIf
   EndIf
   ;mission reminder

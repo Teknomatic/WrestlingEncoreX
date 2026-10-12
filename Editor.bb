@@ -42,7 +42,7 @@ AmbientLight 200,200,200
 ;thumbnail
 pic=CreateSprite()
 ScaleSprite pic,5,5
-PositionEntity pic,22.9,29,0
+PositionEntity pic,26.9,29,0
 If GraphicsWidth()=1280 And GraphicsHeight()=800 Then PositionEntity pic,27,29,0
 ;re-organize pages
 For count=2 To 4
@@ -751,9 +751,9 @@ While go=0
    If foc=9 Then colR$=charRightArmCol(0,1,coz) : colG$=charRightArmCol(0,2,coz) : colB$=charRightArmCol(0,3,coz)
    If foc=10 Then colR$=charLegsCol(0,1,coz) : colG$=charLegsCol(0,2,coz) : colB$=charLegsCol(0,3,coz)
    DrawImage gColour,x+1,y+1
-   Outline(colR$,x-40,y,50,0,0,200,0,0)
+   Outline(colR$,x-80,y,50,0,0,200,0,0)
    Outline(colG$,x,y,0,50,0,0,200,0)
-   Outline(colB$,x+40,y,0,0,50,0,0,200)
+   Outline(colB$,x+80,y,0,0,50,0,0,200)
    ;left options
    x=140 : y=190
    If game=1 And screenAgenda<>3 Then y=180
@@ -851,12 +851,12 @@ While go=0
   expenses=gamExpenses(slot)+gamExpenses(0)+weapCost(charWeapon(0))
   If game=1 And expenses>0
    x=rX#(660) : y=rY#(65)
-   Color 190,150,40 : Line x-50,y+13,x+50,y+13
-   Color 160,120,10 : Line x-54,y+15,x+54,y+15
+   Color 190,150,40 : Line x-50,y+33,x+50,y+33
+   Color 160,120,10 : Line x-54,y+35,x+54,y+35
    SetFont font(1)
    Outline("Gimmick Changes:",x,y-15,0,0,0,200,170,80)
    SetFont font(3)
-   Outline("$"+GetFigure$(expenses),x,y,0,0,0,250,250,130)
+   Outline("$"+GetFigure$(expenses),x,y+15,0,0,0,250,250,130)
   EndIf
   ;inst
   SetFont font(1)
@@ -886,12 +886,12 @@ If go=>1
  QuickLoader(400,300,"Please Wait","Saving Character")
  ;take photo
  If go=1
-  If GraphicsWidth()=1280 And GraphicsHeight()=800 Then width#=393 Else width#=rX#(300)
+  width#=rY#(550)*142.0/258.0
   photo=CreateImage(width#,rY#(550))
   GrabImage photo,rX#(400),rY#(280)
   MaskImage photo,25,5,5
   ;register portrait
-  ResizeImage photo,70,128
+  ResizeImage photo,142,258
   SaveImage(photo,"Data/Portraits/Photo"+Dig$(saver,100)+".bmp")
   charPhoto(saver)=LoadImage("Data/Portraits/Photo"+Dig$(saver,100)+".bmp") 
   MaskImage charPhoto(saver),25,5,5

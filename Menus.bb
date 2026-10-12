@@ -218,11 +218,11 @@ While go=0
 	 EndIf
 	EndIf
 	;check limits
-	If optGameRes<2 Then optGameRes=2 
-	If optGameRes>5 Then optGameRes=5
+	If optGameRes<0 Then optGameRes=0 
+	If optGameRes>2 Then optGameRes=2
 	If optGameRes<>oldRes Then optMenuRes=optGameRes
-	If optMenuRes<2 Then optMenuRes=2 
-	If optMenuRes>5 Then optMenuRes=5
+	If optMenuRes<0 Then optMenuRes=0 
+	If optMenuRes>2 Then optMenuRes=2
 	If optMeters<0 Then optMeters=1
 	If optMeters>1 Then optMeters=0 
 	If optTags<0 Then optTags=0
@@ -317,7 +317,7 @@ While go=0
 	 If KeyDown(1) Then go=-1
 	 ;proceed
 	 If KeyDown(28) Or JoyDown(1) Or MouseDown(1) 
-	  If foc=8 And keytim=0 Then go=1 
+	 If foc=12 And keytim=0 Then go=1
 	 EndIf
 	EndIf
 	
@@ -326,22 +326,23 @@ While go=0
 	 ;highlight option
 	 If KeyDown(200) Or JoyYDir()=-1 Then foc=foc-1 : keytim=6
 	 If KeyDown(208) Or JoyYDir()=1 Then foc=foc+1 : keytim=6
-	 If foc>8 Then foc=1
-	 If foc<1 Then foc=8
+	If foc>12 Then foc=1
+	If foc<1 Then foc=12
 	 If KeyDown(28) Or JoyDown(1) Or MouseDown(1)
 	  ;enter new command
-	  If foc=<6
+	 If foc=<10
 	   PlaySound sMenuBrowse : keytim=10
 	   callX=MouseX() : callY=MouseY()
 	   screenCall=foc
 	  EndIf
 	  ;restore defaults
-	  If foc=7
+	 If foc=11
 	   PlaySound sSmashWire : keytim=10
 	   keyAttack=30 : keyGrab=31 : keySwitch=29
        keyRun=44 : keyPick=45 : keyTaunt=57
-	  EndIf
+	  keyMoveUp=200 : keyMoveDown=208 : keyMoveLeft=203 : keyMoveRight=205
 	 EndIf
+	EndIf
 	EndIf
 	
 	;INPUT DELAYS
@@ -352,6 +353,10 @@ While go=0
      If screenCall=4 Then keyRun=AssignKey(keyRun) ;run
      If screenCall=5 Then keyPick=AssignKey(keyPick) ;pick-up
      If screenCall=6 Then keyTaunt=AssignKey(keyTaunt) ;taunt
+     If screenCall=7 Then keyMoveUp=AssignKey(keyMoveUp) ;up
+     If screenCall=8 Then keyMoveDown=AssignKey(keyMoveDown) ;down
+     If screenCall=9 Then keyMoveLeft=AssignKey(keyMoveLeft) ;left
+     If screenCall=10 Then keyMoveRight=AssignKey(keyMoveRight) ;right
     EndIf
 	
  UpdateWorld
@@ -365,22 +370,30 @@ While go=0
  If screenCall>0 Then MoveMouse callX,callY
  ;options
  SetFont font(1)
- y=140
+ y=135
  DrawOption(1,400,y,"Attack",Key$(keyAttack),1,0)
- DrawOption(2,400,y+35,"Grapple",Key$(keyGrab),1,0)
- DrawOption(3,400,y+70,"Switch Focus",Key$(keySwitch),1,0)
- DrawOption(4,400,y+110,"Run",Key$(keyRun),1,0)
- DrawOption(5,400,y+145,"Pick Up",Key$(keyPick),1,0)
- DrawOption(6,400,y+180,"Taunt/Pin",Key$(keyTaunt),1,0)
- DrawOption(7,400,y+225,"RESTORE DEFAULTS","",0,0)
- DrawOption(8,400,550,"SAVE & EXIT","",0,0)
+ DrawOption(2,400,y+34,"Grapple",Key$(keyGrab),1,0)
+ DrawOption(3,400,y+68,"Switch Focus",Key$(keySwitch),1,0)
+ DrawOption(4,400,y+102,"Run",Key$(keyRun),1,0)
+ DrawOption(5,400,y+136,"Pick Up",Key$(keyPick),1,0)
+ DrawOption(6,400,y+170,"Taunt/Pin",Key$(keyTaunt),1,0)
+ DrawOption(7,400,y+204,"Move Up",Key$(keyMoveUp),1,0)
+ DrawOption(8,400,y+238,"Move Down",Key$(keyMoveDown),1,0)
+ DrawOption(9,400,y+272,"Move Left",Key$(keyMoveLeft),1,0)
+ DrawOption(10,400,y+306,"Move Right",Key$(keyMoveRight),1,0)
+ DrawOption(11,400,y+355,"RESTORE DEFAULTS","",0,0)
+ DrawOption(12,400,550,"SAVE & EXIT","",0,0)
  ;input overrides
  If screenCall=1 Then DrawOption(-1,400,y,"Press New Key",">>> <<<",1,0)
- If screenCall=2 Then DrawOption(-1,400,y+35,"Press New Key",">>> <<<",1,0)
- If screenCall=3 Then DrawOption(-1,400,y+70,"Press New Key",">>> <<<",1,0)
- If screenCall=4 Then DrawOption(-1,400,y+110,"Press New Key",">>> <<<",1,0)
- If screenCall=5 Then DrawOption(-1,400,y+145,"Press New Key",">>> <<<",1,0)
- If screenCall=6 Then DrawOption(-1,400,y+180,"Press New Key",">>> <<<",1,0)
+ If screenCall=2 Then DrawOption(-1,400,y+34,"Press New Key",">>> <<<",1,0)
+ If screenCall=3 Then DrawOption(-1,400,y+68,"Press New Key",">>> <<<",1,0)
+ If screenCall=4 Then DrawOption(-1,400,y+102,"Press New Key",">>> <<<",1,0)
+ If screenCall=5 Then DrawOption(-1,400,y+136,"Press New Key",">>> <<<",1,0)
+ If screenCall=6 Then DrawOption(-1,400,y+170,"Press New Key",">>> <<<",1,0)
+ If screenCall=7 Then DrawOption(-1,400,y+204,"Press New Key",">>> <<<",1,0)
+ If screenCall=8 Then DrawOption(-1,400,y+238,"Press New Key",">>> <<<",1,0)
+ If screenCall=9 Then DrawOption(-1,400,y+272,"Press New Key",">>> <<<",1,0)
+ If screenCall=10 Then DrawOption(-1,400,y+306,"Press New Key",">>> <<<",1,0)
  ;inst
  SetFont font(1)
  Outline("UP/DOWN=Select action, ENTER=Change command, ESC=Exit",rX#(400),rY#(580),0,0,0,85,85,85)
@@ -433,7 +446,7 @@ While go=0
 	 If KeyDown(1) Then go=-1
 	 ;proceed
 	 If KeyDown(28) Or JoyDown(1) Or MouseDown(1) 
-	  If foc=8 And keytim=0 Then go=1 
+	  If foc=12 And keytim=0 Then go=1
 	 EndIf
 	EndIf
 	
@@ -442,24 +455,23 @@ While go=0
 	 ;highlight option
 	 If KeyDown(200) Or JoyYDir()=-1 Then foc=foc-1 : keytim=6
 	 If KeyDown(208) Or JoyYDir()=1 Then foc=foc+1 : keytim=6
-	 If foc>8 Then foc=1
-	 If foc<1 Then foc=8
+	 If foc>12 Then foc=1
+	 If foc<1 Then foc=12
 	 If KeyDown(28) Or JoyDown(1) Or MouseDown(1)
 	  ;enter new command
-	  If foc=<6
+	  If foc=<10
 	   PlaySound sMenuBrowse : keytim=10
 	   callX=MouseX() : callY=MouseY()
 	   screenCall=foc
 	  EndIf
 	  ;restore defaults
-	  If foc=7
+	  If foc=11
 	   PlaySound sSmashWire : keytim=10
-	   buttAttack=4 : buttGrab=5 : buttSwitch=3
-       buttRun=1 : buttPick=2 : buttTaunt=6
+	   SetGamepadDefaults()
 	  EndIf
 	 EndIf
 	 ;forfeit button
-	 If (KeyDown(14) Or KeyDown(211)) And foc=<6
+	 If (KeyDown(14) Or KeyDown(211)) And foc=<10
 	  PlaySound sVoid : keytim=10 
 	  If foc=1 Then buttAttack=0
 	  If foc=2 Then buttGrab=0
@@ -467,6 +479,10 @@ While go=0
 	  If foc=4 Then buttRun=0
 	  If foc=5 Then buttPick=0
 	  If foc=6 Then buttTaunt=0
+	  If foc=7 Then padUp=0
+	  If foc=8 Then padDown=0
+	  If foc=9 Then padLeft=0
+	  If foc=10 Then padRight=0
 	 EndIf 
 	EndIf
 	
@@ -478,6 +494,10 @@ While go=0
      If screenCall=4 Then buttRun=AssignButton(buttRun) ;run
      If screenCall=5 Then buttPick=AssignButton(buttPick) ;pick-up
      If screenCall=6 Then buttTaunt=AssignButton(buttTaunt) ;taunt
+     If screenCall=7 Then padUp=AssignPadDirection(padUp) ;up
+     If screenCall=8 Then padDown=AssignPadDirection(padDown) ;down
+     If screenCall=9 Then padLeft=AssignPadDirection(padLeft) ;left
+     If screenCall=10 Then padRight=AssignPadDirection(padRight) ;right
     EndIf
 	
  UpdateWorld
@@ -487,26 +507,34 @@ While go=0
  ;DISPLAY
  TileImage gTile
  DrawImage gLogo(2),rX#(400),rY#(65)
- ;lock mouse
+ ;lock mouse during assignment
  If screenCall>0 Then MoveMouse callX,callY
  ;options
  SetFont font(1)
- y=140
+ y=135
  DrawOption(1,400,y,"Attack","Button "+buttAttack,1,0)
- DrawOption(2,400,y+35,"Grapple","Button "+buttGrab,1,0)
- DrawOption(3,400,y+70,"Switch Focus","Button "+buttSwitch,1,0)
- DrawOption(4,400,y+110,"Run","Button "+buttRun,1,0)
- DrawOption(5,400,y+145,"Pick Up","Button "+buttPick,1,0)
- DrawOption(6,400,y+180,"Taunt/Pin","Button "+buttTaunt,1,0)
- DrawOption(7,400,y+225,"RESTORE DEFAULTS","",0,0)
- DrawOption(8,400,550,"SAVE & EXIT","",0,0)
+ DrawOption(2,400,y+34,"Grapple","Button "+buttGrab,1,0)
+ DrawOption(3,400,y+68,"Switch Focus","Button "+buttSwitch,1,0)
+ DrawOption(4,400,y+102,"Run","Button "+buttRun,1,0)
+ DrawOption(5,400,y+136,"Pick Up","Button "+buttPick,1,0)
+ DrawOption(6,400,y+170,"Taunt/Pin","Button "+buttTaunt,1,0)
+ DrawOption(7,400,y+204,"Move Up",PadDirectionName$(padUp),1,0)
+ DrawOption(8,400,y+238,"Move Down",PadDirectionName$(padDown),1,0)
+ DrawOption(9,400,y+272,"Move Left",PadDirectionName$(padLeft),1,0)
+ DrawOption(10,400,y+306,"Move Right",PadDirectionName$(padRight),1,0)
+ DrawOption(11,400,y+355,"RESTORE DEFAULTS","",0,0)
+ DrawOption(12,400,550,"SAVE & EXIT","",0,0)
  ;input overrides
  If screenCall=1 Then DrawOption(-1,400,y,"Press New Button",">>> <<<",1,0)
- If screenCall=2 Then DrawOption(-1,400,y+35,"Press New Button",">>> <<<",1,0)
- If screenCall=3 Then DrawOption(-1,400,y+70,"Press New Button",">>> <<<",1,0)
- If screenCall=4 Then DrawOption(-1,400,y+110,"Press New Button",">>> <<<",1,0)
- If screenCall=5 Then DrawOption(-1,400,y+145,"Press New Button",">>> <<<",1,0)
- If screenCall=6 Then DrawOption(-1,400,y+180,"Press New Button",">>> <<<",1,0)
+ If screenCall=2 Then DrawOption(-1,400,y+34,"Press New Button",">>> <<<",1,0)
+ If screenCall=3 Then DrawOption(-1,400,y+68,"Press New Button",">>> <<<",1,0)
+ If screenCall=4 Then DrawOption(-1,400,y+102,"Press New Button",">>> <<<",1,0)
+ If screenCall=5 Then DrawOption(-1,400,y+136,"Press New Button",">>> <<<",1,0)
+ If screenCall=6 Then DrawOption(-1,400,y+170,"Press New Button",">>> <<<",1,0)
+ If screenCall=7 Then DrawOption(-1,400,y+204,"Press New Direction",">>> <<<",1,0)
+ If screenCall=8 Then DrawOption(-1,400,y+238,"Press New Direction",">>> <<<",1,0)
+ If screenCall=9 Then DrawOption(-1,400,y+272,"Press New Direction",">>> <<<",1,0)
+ If screenCall=10 Then DrawOption(-1,400,y+306,"Press New Direction",">>> <<<",1,0)
  ;inst
  SetFont font(1)
  Outline("UP/DOWN=Select action, ENTER=Change command, BACKSPACE=Forfeit command, ESC=Exit",rX#(400),rY#(580),0,0,0,85,85,85)
@@ -1205,27 +1233,27 @@ While go=0
  If screenAgenda=0 Then y=y-8
  For cyc=1 To 9
   SetFont font(1)
-  If MouseX()>rX#(x)-90 And MouseX()<rX#(x)+90 And MouseY()=>rY#(y)-55 And MouseY()<rY#(y)+55 Then foc=cyc
-  DrawImage gFed(cyc),rX#(x),rY#(y)-11
+  If MouseX()>rX#(x)-180 And MouseX()<rX#(x)+180 And MouseY()=>rY#(y)-110 And MouseY()<rY#(y)+110 Then foc=cyc
+  DrawImage gFed(cyc),rX#(x),rY#(y)-18
   If fedLocked(cyc) And screenAgenda=0 
-   DrawImage gFed(0),rX#(x),rY#(y)-11
+   DrawImage gFed(0),rX#(x),rY#(y)-18
    If foc=cyc And flashTim>20
-    DrawImage gBelt(1),rX#(x),rY#(y)-11
+    DrawImage gBelt(1),rX#(x),rY#(y)-18
     If cyc=<6 Then Outline("UNLOCK BY WINNING",rX#(x),rY#(y)-26,50,25,50,220,150,250)
     If cyc=<6 Then Outline("THE WORLD TITLE!",rX#(x),rY#(y)+4,50,25,50,220,150,250)
     If cyc=>7 Then Outline("UNLOCK BY WINNING",rX#(x),rY#(y)-26,50,25,50,220,150,250)
     If cyc=>7 Then Outline("ALL WORLD TITLES!",rX#(x),rY#(y)+4,50,25,50,220,150,250)
    EndIf
   EndIf
-  If screenAgenda=1 And cyc=>8 Then DrawImage gFed(0),rX#(x),rY#(y)-11
+  If screenAgenda=1 And cyc=>8 Then DrawImage gFed(0),rX#(x),rY#(y)-18
   If foc=cyc Then DrawImage gFedMenu(1),rX#(x),rY#(y) Else DrawImage gFedMenu(2),rX#(x),rY#(y)
   r=160 : g=160 : b=160
   If foc=cyc Then r=255 : g=Rnd(175,225) : b=100
   If screenAgenda=0 Then namer$=fedName$(cyc)+" ("+fedShortName$(cyc)+")" Else namer$=fedName$(cyc)
   If StringWidth(namer$)>180 Then SetFont font(0)
-  Outline(namer$,rX#(x),rY#(y)+40,0,0,0,r,g,b)
-  If fedLocked(cyc) And screenAgenda=0 Then DrawImage gMenu(0),rX#(x),rY#(y)+40
-  If screenAgenda=1 And cyc=>8 Then DrawImage gMenu(0),rX#(x),rY#(y)+40
+  Outline(namer$,rX#(x),rY#(y)+80,0,0,0,r,g,b)
+  If fedLocked(cyc) And screenAgenda=0 Then DrawImage gMenu(0),rX#(x),rY#(y)+80
+  If screenAgenda=1 And cyc=>8 Then DrawImage gMenu(0),rX#(x),rY#(y)+80
   If screenAgenda=2 And charFed(gamChar(slot))=cyc Then DrawImage charPhoto(gamChar(slot)),rX#(x)-70,rY#(y)-30
   If foc=cyc Then showX=x : showY=y
   x=x+200
@@ -1480,7 +1508,7 @@ While go=0
  For cyc=1 To no_slots
   ;mouse hotspot
   char=fedRoster(fed,cyc)
-  If MouseX()>rX#(x)-87 And MouseX()<rX#(x)+87 And MouseY()=>rY#(y)-10 And MouseY()<rY#(y)+10 Then foc=cyc
+  If MouseX()>rX#(x)-174 And MouseX()<rX#(x)+174 And MouseY()=>rY#(y)-20 And MouseY()<rY#(y)+20 Then foc=cyc
   ;status indicate
   If foc=cyc Then Color 85,85,85 Else Color 55,55,55
   If game=1
@@ -1492,14 +1520,14 @@ While go=0
   If charSelected(char)=1 And no_plays>1 Then Color 0,0,200
   If charSelected(char)=2 And no_plays>1 Then Color 180,0,180
   If cloner=cyc Then Color 255,255,0
-  Rect rX#(x)-85,rY#(y)-10,170,20,1
+  Rect rX#(x)-170,rY#(y)-20,340,40,1
   ;boxing
   If foc=cyc Then DrawImage gCharMenu(1),rX#(x),rY#(y) Else DrawImage gCharMenu(2),rX#(x),rY#(y)
   ;titles
-  If TitleHolder(char,3) Then DrawImage gBelt(3),rX#(x)+4,rY#(y)+8
-  If TitleHolder(char,2) Then DrawImage gBelt(2),rX#(x)-4,rY#(y)+4
-  If TitleHolder(char,1) Then DrawImage gBelt(1),rX#(x),rY#(y)+6
-  If char=fedBooker(fed) Then DrawImage gBelt(0),rX#(x),rY#(y)-14
+  If TitleHolder(char,3) Then DrawImage gBelt(3),rX#(x)+4,rY#(y)+28
+  If TitleHolder(char,2) Then DrawImage gBelt(2),rX#(x)-4,rY#(y)+24
+  If TitleHolder(char,1) Then DrawImage gBelt(1),rX#(x),rY#(y)+26
+  If char=fedBooker(fed) Then DrawImage gBelt(0),rX#(x),rY#(y)-34
   ;injury indicator
   If game=1 And charInjured(char)>0
    SetFont font(0)
@@ -1538,16 +1566,16 @@ While go=0
  ;legend
  If legendTim>0 And screenAgenda=1
   x=640 : y=52
-  Color 255,0,0 : Rect rX#(x)-80,rY#(y)-8,160,16,1
-  Color 135,0,0 : Rect rX#(x)-80,rY#(y)-8,160,16,0
+  Color 255,0,0 : Rect rX#(x)-160,rY#(y)-16,320,32,1
+  Color 135,0,0 : Rect rX#(x)-160,rY#(y)-16,320,32,0
   Outline("CPU",rX#(x),rY#(y),145,0,0,165,150,150)
   y=y+20
-  Color 0,0,255 : Rect rX#(x)-80,rY#(y)-8,160,16,1
-  Color 0,0,135 : Rect rX#(x)-80,rY#(y)-8,160,16,0
+  Color 0,0,255 : Rect rX#(x)-160,rY#(y)-16,320,32,1
+  Color 0,0,135 : Rect rX#(x)-160,rY#(y)-16,320,32,0
   Outline("Keyboard",rX#(x),rY#(y),0,0,145,150,150,165)
   y=y+20
-  Color 155,0,155 : Rect rX#(x)-80,rY#(y)-8,160,16,1
-  Color 75,0,75 : Rect rX#(x)-80,rY#(y)-8,160,16,0
+  Color 155,0,155 : Rect rX#(x)-160,rY#(y)-16,320,32,1
+  Color 75,0,75 : Rect rX#(x)-160,rY#(y)-16,320,32,0
   Outline("Gamepad",rX#(x),rY#(y),100,0,100,165,150,165)
  EndIf
  ;options
@@ -1615,10 +1643,12 @@ End Function
 ;DRAW MENU ITEM
 Function DrawOption(box,x,y,scriptA$,scriptB$,style,size) ;0=solo,1=duel / 0=normal,2=reduced
  ;assess hotspots
- If size=0 Then ranger=87 Else ranger=62
+ ;the menu box halves were resized x2, so their placement must scale with the larger sprite width
+ scale#=2.1
+ If size=0 Then ranger=87*scale# Else ranger=62*scale#
  If style=0 Then width=ranger Else width=ranger*2
  If box=>0 And box<>99 And foc<>99
-  If MouseX()=>rX#(x)-width And MouseX()<rX#(x)+width And MouseY()=>rY#(y)-12 And MouseY()<rY#(y)+12 Then foc=box
+  If MouseX()=>rX#(x)-width And MouseX()<rX#(x)+width And MouseY()=>rY#(y)-18 And MouseY()<rY#(y)+18 Then foc=box
  EndIf
  If style=0 Then ranger=0
  ;draw boxes
@@ -1689,7 +1719,8 @@ End Function
 ;SQUEEZE FONT INTO BOX
 Function SqueezeFont(script$,width)
  SetFont font(1)
- If StringWidth(script$)>width Then SetFont font(0)
+ ;allow a larger buffer so longer labels like EXHIBITION stay on the larger font
+ If StringWidth(script$)>width+40 Then SetFont font(0)
 End Function
 
 ;DRAW CHARACTER PROFILE
@@ -1702,92 +1733,92 @@ Function DrawProfile(char,x,y)
  r=240 : g=220 : b=90
  ;<<<<<<<<< LEFT HAND SIDE <<<<<<<<<
  ;health meter
- Color 130,0,0 : Rect x-40,y+5,100,5,1
- Color 200,0,0 : Rect x-39,y+6,98,3,1
+ Color 130,0,0 : Rect x-100,y+15,200,10,1
+ Color 200,0,0 : Rect x-99,y+16,198,6,1
  If game=1 Then liner=charHealth(char) Else liner=100
- Color 0,130,0 : Rect x-40,y+5,liner,5,1
- Color 0,200,0 : Rect x-39,y+6,liner-2,3,1
- ;injury indication
- If game=1 And charInjured(char)>0
-  DrawImage gInjury,x-45,y+7
-  SetFont font(1)
-  If screen<>17 And screen<>18 Then Outline(charInjured(char),x-45,y+7,0,0,0,255,150,150)
- EndIf
+ Color 0,130,0 : Rect x-100,y+15,liner*2,10,1
+ Color 0,200,0 : Rect x-99,y+16,(liner*2)-2,6,1
  ;allegiance indicator
  SetFont font(2)
  placer=(StringWidth(charName$(char))/2)+5
- If placer<45 Then placer=45
- If placer>90 Then placer=90
+ If placer<55 Then placer=55
+ If placer>100 Then placer=100
  If game=1 And charInjured(char)>0 And placer<60 Then placer=60
- DrawImage gHeel(charHeel(char)),x-placer,y
- ;photos & name line
- If charManager(char)>0 Then DrawImage charPhoto(charManager(char)),x-132,y+33
- If game=1 And screen=15 And gamSchedule(slot,GetDate())>0 And matchTeams>0 And charFriend(char)>0 And charFriend(char)<>charManager(char) 
-  DrawImage charPhoto(charFriend(char)),x-142,y+33
+ ;injury indication
+ If game=1 And charInjured(char)>0
+  DrawImage gInjury,x-placer-5,y
+  SetFont font(1)
+  If screen<>17 And screen<>18 Then Outline(charInjured(char),x-placer-5,y,0,0,0,255,150,150)
  EndIf
- If char>0 Then DrawImage charPhoto(char),x-112,y+35
- If TitleHolder(char,3) Then DrawImage gBelt(3),x-110,y+49
- If TitleHolder(char,2) Then DrawImage gBelt(2),x-112,y+47
- If TitleHolder(char,1) Then DrawImage gBelt(1),x-111,y+45
+ DrawImage gHeel(charHeel(char)),x-placer-50,y
+ ;photos & name line
+ If charManager(char)>0 Then DrawImage charPhoto(charManager(char)),x-294,y+66
+ If game=1 And screen=15 And gamSchedule(slot,GetDate())>0 And matchTeams>0 And charFriend(char)>0 And charFriend(char)<>charManager(char) 
+  DrawImage charPhoto(charFriend(char)),x-314,y+66
+ EndIf
+ If char>0 Then DrawImage charPhoto(char),x-254,y+70
+ If TitleHolder(char,3) Then DrawImage gBelt(3),x-260,y+99
+ If TitleHolder(char,2) Then DrawImage gBelt(2),x-262,y+97
+ If TitleHolder(char,1) Then DrawImage gBelt(1),x-261,y+95
  If KeyDown(47)=0 Then Outline(charName$(char),x+10,y-1,0,0,0,r,g,b)
  If KeyDown(47) Then Outline(charName$(char)+"("+GetValue(char)+")",x+10,y-1,0,0,0,r,g,b)
  ;headers A
  SetFont font(1)
- OutlineStraight("Popularity:",x-90,y+21,0,0,0,r,g,b)
- OutlineStraight("Strength:",x-80,y+36,0,0,0,r,g,b)
- OutlineStraight("Skill:",x-52,y+51,0,0,0,r,g,b)
- OutlineStraight("Agility:",x-65,y+66,0,0,0,r,g,b)
- OutlineStraight("Finisher:",x-76,y+84,0,0,0,r,g,b)
+ OutlineStraight("Popularity:",x-203,y+41,0,0,0,r,g,b)
+ OutlineStraight("Strength:",x-183,y+73,0,0,0,r,g,b)
+ OutlineStraight("Skill:",x-109,y+105,0,0,0,r,g,b)
+ OutlineStraight("Agility:",x-143,y+137,0,0,0,r,g,b)
+ OutlineStraight("Finisher:",x-167,y+168,0,0,0,r,g,b)
  ;data A
  GetStatColour(charPop(char),charOldPop(char))
- Outline(charPop(char),x-7,y+21,0,0,0,ColorRed(),ColorGreen(),ColorBlue())
+ Outline(charPop(char),x-7,y+41,0,0,0,ColorRed(),ColorGreen(),ColorBlue())
  GetStatColour(charStr(char),charOldStr(char))
- Outline(charStr(char),x-7,y+36,0,0,0,ColorRed(),ColorGreen(),ColorBlue())
+ Outline(charStr(char),x-7,y+73,0,0,0,ColorRed(),ColorGreen(),ColorBlue())
  GetStatColour(charSkl(char),charOldSkl(char))
- Outline(charSkl(char),x-7,y+51,0,0,0,ColorRed(),ColorGreen(),ColorBlue())
+ Outline(charSkl(char),x-7,y+105,0,0,0,ColorRed(),ColorGreen(),ColorBlue())
  GetStatColour(charAgl(char),charOldAgl(char))
- Outline(charAgl(char),x-7,y+66,0,0,0,ColorRed(),ColorGreen(),ColorBlue())
- OutlineStraight(movName$(charMove(char,15)),x-15,y+84,0,0,0,255,255,255)
+ Outline(charAgl(char),x-7,y+137,0,0,0,ColorRed(),ColorGreen(),ColorBlue())
+ OutlineStraight(movName$(charMove(char,15)),x-25,y+170,0,0,0,255,255,255)
  ;headers B
- OutlineStraight("Stamina:",x+27,y+21,0,0,0,r,g,b)
- OutlineStraight("Toughness:",x+11,y+36,0,0,0,r,g,b)
- OutlineStraight("Attitude:",x+29,y+51,0,0,0,r,g,b)
- OutlineStraight("Happiness:",x+13,y+66,0,0,0,r,g,b)
+ OutlineStraight("Stamina:",x+69,y+41,0,0,0,r,g,b)
+ OutlineStraight("Toughness:",x+31,y+73,0,0,0,r,g,b)
+ OutlineStraight("Attitude:",x+73,y+105,0,0,0,r,g,b)
+ OutlineStraight("Happiness:",x+38,y+137,0,0,0,r,g,b)
  ;data B
  GetStatColour(charStam(char),charOldStam(char))
- Outline(charStam(char),x+97,y+21,0,0,0,ColorRed(),ColorGreen(),ColorBlue())
+ Outline(charStam(char),x+237,y+41,0,0,0,ColorRed(),ColorGreen(),ColorBlue())
  GetStatColour(charTough(char),charOldTough(char)) 
- Outline(charTough(char),x+97,y+36,0,0,0,ColorRed(),ColorGreen(),ColorBlue())
+ Outline(charTough(char),x+237,y+73,0,0,0,ColorRed(),ColorGreen(),ColorBlue())
  GetStatColour(charAtt(char),charOldAtt(char))
- Outline(charAtt(char),x+97,y+51,0,0,0,ColorRed(),ColorGreen(),ColorBlue())
+ Outline(charAtt(char),x+237,y+105,0,0,0,ColorRed(),ColorGreen(),ColorBlue())
  GetStatColour(charHap(char),charOldHap(char))
- Outline(charHap(char),x+97,y+66,0,0,0,ColorRed(),ColorGreen(),ColorBlue())
- ;>>>>>>>>>> RIGHT HAND SIDE >>>>>>>>>
+ Outline(charHap(char),x+237,y+137,0,0,0,ColorRed(),ColorGreen(),ColorBlue())
+ ;>>>>>>>>>> RIGHT HAND SIDE >>>>>>>>>>
  If screen<>13 Or legendTim=0
   ;headers
   x=rX#(600)
-  OutlineStraight("Experience:",x-79,y+21,0,0,0,r,g,b)
-  OutlineStraight("Contract:",x-62,y+36,0,0,0,r,g,b)
-  OutlineStraight("Salary:",x-49,y+51,0,0,0,r,g,b) 
+  OutlineStraight("Experience:",x-193,y+41,0,0,0,r,g,b)
+  OutlineStraight("Contract:",x-154,y+73,0,0,0,r,g,b)
+  OutlineStraight("Salary:",x-119,y+105,0,0,0,r,g,b) 
   ;data
-  OutlineStraight(charAge(char)+" years old",x,y+21,0,0,0,255,255,255)
-  OutlineStraight(charContract(char)+" weeks",x,y+36,0,0,0,255,255,255) 
-  OutlineStraight("$"+GetFigure$(charSalary(char))+" per week",x,y+51,0,0,0,255,255,255)
+  OutlineStraight(charAge(char)+" years old",x,y+41,0,0,0,255,255,255)
+  OutlineStraight(charContract(char)+" weeks",x,y+73,0,0,0,255,255,255) 
+  OutlineStraight("$"+GetFigure$(charSalary(char))+" per week",x,y+105,0,0,0,255,255,255)
   ;smallprint
   SetFont font(0)
-  If game=1 And char=gamChar(slot) Then OutlineStraight("("+CountMatches(slot)+" matches)",x+86,y+21,0,0,0,255,255,255)
-  OutlineStraight("Image Rights:",x-72,y+65,0,0,0,r,g,b)
-  OutlineStraight("Perform Clause:",x-83,y+76,0,0,0,r,g,b)
-  OutlineStraight("Health Policy:",x-72,y+87,0,0,0,r,g,b)
+  If game=1 And char=gamChar(slot) Then OutlineStraight("("+CountMatches(slot)+" matches)",x+206,y+41,0,0,0,255,255,255)
+  OutlineStraight("Image Rights:",x-145,y+135,0,0,0,r,g,b)
+  OutlineStraight("Perform Clause:",x-166,y+156,0,0,0,r,g,b)
+  OutlineStraight("Health Policy:",x-140,y+177,0,0,0,r,g,b)
   For count=1 To 3
    namer$="Undisclosed" : Color 255,255,255
    If game=1 And char=gamChar(slot) Then namer$=textClause$(count,gamClause(slot,count)) : GetStatColour(gamClause(slot,count),1)
-   OutlineStraight(namer$,x,y+(54+(count*11)),0,0,0,ColorRed(),ColorGreen(),ColorBlue())
+   OutlineStraight(namer$,x,y+(114+(count*22)),0,0,0,ColorRed(),ColorGreen(),ColorBlue())
   Next
   ;bank details
   If game=1 And char=gamChar(slot)
-   Color 190,150,40 : Line x-50,y+8,x+70,y+8
-   Color 160,120,10 : Line x-54,y+10,x+74,y+10
+   Color 190,150,40 : Line x-50,y+18,x+70,y+18
+   Color 160,120,10 : Line x-54,y+20,x+74,y+20
    SetFont font(2)
    If gamBank(slot)=<0 Then Outline("$"+GetFigure$(gamBank(slot)),x+10,y,0,0,0,200,0,0)
    If gamBank(slot)>0 Then Outline("$"+GetFigure$(gamBank(slot)),x+10,y,0,0,0,250,250,130) 
@@ -1801,57 +1832,56 @@ Function DrawFedProfile(cyc,x,y)
  If x<0 Then x=180
  If y<0 Then y=35
  x=rX#(x) : y=rY#(y) 
- ;colour scheme
  r=240 : g=220 : b=90
  ;<<<<<<<<< LEFT HAND SIDE <<<<<<<<<
  ;name
- Color 190,150,40 : Line x-50,y+8,x+70,y+8
- Color 160,120,10 : Line x-54,y+10,x+74,y+10
+ Color 190,150,40 : Line x-110,y+17,x+130,y+17 : Line x-110,y+18,x+130,y+18
+ Color 160,120,10 : Line x-114,y+20,x+134,y+20 : Line x-114,y+21,x+134,y+21
  SetFont font(2)
  Outline(fedName$(cyc),x+10,y-1,0,0,0,r,g,b)
  ;portraits
- If fedChampWorld(cyc)>0 Then DrawImage charPhoto(fedChampWorld(cyc)),x-127,y+24
- If fedBooker(cyc)>0 Then DrawImage charPhoto(fedBooker(cyc)),x-107,y+25 
+ If fedChampWorld(cyc)>0 Then DrawImage charPhoto(fedChampWorld(cyc)),x-257,y+54
+ If fedBooker(cyc)>0 Then DrawImage charPhoto(fedBooker(cyc)),x-217,y+55 
  ;headers
  SetFont font(1)
- OutlineStraight("Popularity:",x-75,y+21,0,0,0,r,g,b)
- OutlineStraight("Reputation:",x-78,y+36,0,0,0,r,g,b)
- OutlineStraight("Booker:",x-54,y+51,0,0,0,r,g,b)
- OutlineStraight("Champion:",x-72,y+66,0,0,0,r,g,b)
+ OutlineStraight("Popularity:",x-153,y+41,0,0,0,r,g,b)
+ OutlineStraight("Reputation:",x-166,y+73,0,0,0,r,g,b)
+ OutlineStraight("Booker:",x-104,y+105,0,0,0,r,g,b)
+ OutlineStraight("Champion:",x-151,y+137,0,0,0,r,g,b)
  ;popularity data
  GetStatColour(fedPop(cyc),fedOldPop(cyc))
- Outline(fedPop(cyc),x+8,y+21,0,0,0,ColorRed(),ColorGreen(),ColorBlue())
+ Outline(fedPop(cyc),x+42,y+41,0,0,0,ColorRed(),ColorGreen(),ColorBlue())
  r2=ColorRed()-(ColorRed()/4) : g2=ColorGreen()-(ColorGreen()/4) : b2=ColorBlue()-(ColorBlue()/4)
- Outline("/100",x+35,y+21,0,0,0,r2,g2,b2)
+ Outline("/100",x+122,y+41,0,0,0,r2,g2,b2)
  ;reputation data
  GetStatColour(fedRep(cyc),fedOldRep(cyc))
- Outline(fedRep(cyc),x+8,y+36,0,0,0,ColorRed(),ColorGreen(),ColorBlue())
+ Outline(fedRep(cyc),x+42,y+73,0,0,0,ColorRed(),ColorGreen(),ColorBlue())
  r2=ColorRed()-(ColorRed()/4) : g2=ColorGreen()-(ColorGreen()/4) : b2=ColorBlue()-(ColorBlue()/4)
- Outline("/100",x+35,y+36,0,0,0,r2,g2,b2)
+ Outline("/100",x+122,y+73,0,0,0,r2,g2,b2)
  ;key players
  If fedBooker(cyc)>0 Then namer$=charName$(fedBooker(cyc)) Else namer$="Vacant"
- OutlineStraight(namer$,x,y+51,0,0,0,255,255,255)
+ OutlineStraight(namer$,x+22,y+105,0,0,0,255,255,255)
  If fedChampWorld(cyc)>0 Then namer$=charName$(fedChampWorld(cyc)) Else namer$="Vacant"
- OutlineStraight(namer$,x,y+66,0,0,0,255,255,255)
+ OutlineStraight(namer$,x+22,y+137,0,0,0,255,255,255)
  ;>>>>>>>>>> RIGHT HAND SIDE >>>>>>>>>
  x=rX#(600)
  ;bank details
- Color 190,150,40 : Line x-50,y+8,x+70,y+8
- Color 160,120,10 : Line x-54,y+10,x+74,y+10
+ Color 190,150,40 : Line x-110,y+20,x+130,y+20 : Line x-110,y+21,x+130,y+21
+ Color 160,120,10 : Line x-114,y+23,x+134,y+23 : Line x-114,y+24,x+134,y+24
  SetFont font(2)
  If fedBank(cyc)=<0 Then Outline("$"+GetFigure$(fedBank(cyc)),x+10,y,0,0,0,200,0,0)
  If fedBank(cyc)>0 Then Outline("$"+GetFigure$(fedBank(cyc)),x+10,y,0,0,0,250,250,130) 
  ;headers
  SetFont font(1)
- OutlineStraight("Roster:",x-49,y+21,0,0,0,r,g,b)
- OutlineStraight("Ratio:",x-40,y+36,0,0,0,r,g,b)
- OutlineStraight("Salaries:",x-60,y+51,0,0,0,r,g,b)
- OutlineStraight("Production:",x-77,y+66,0,0,0,r,g,b) 
+ OutlineStraight("Roster:",x-123,y+41,0,0,0,r,g,b)
+ OutlineStraight("Ratio:",x-100,y+73,0,0,0,r,g,b)
+ OutlineStraight("Salaries:",x-146,y+105,0,0,0,r,g,b)
+ OutlineStraight("Production:",x-188,y+137,0,0,0,r,g,b) 
  ;data
- OutlineStraight(fedSize(cyc)+" wrestlers",x,y+21,0,0,0,255,255,255)
- OutlineStraight(GetRatio(cyc,0)+" Faces vs "+GetRatio(cyc,1)+" Heels",x,y+36,0,0,0,255,255,255) 
- OutlineStraight("$"+GetFigure$(CountSalaries(cyc))+" per week",x,y+51,0,0,0,255,255,255)
- OutlineStraight("Undisclosed",x,y+66,0,0,0,255,255,255)
+ OutlineStraight(fedSize(cyc)+" wrestlers",x-5,y+41,0,0,0,255,255,255)
+ OutlineStraight(GetRatio(cyc,0)+" Faces vs "+GetRatio(cyc,1)+" Heels",x-5,y+73,0,0,0,255,255,255) 
+ OutlineStraight("$"+GetFigure$(CountSalaries(cyc))+" per week",x-5,y+105,0,0,0,255,255,255)
+ OutlineStraight("Undisclosed",x-5,y+137,0,0,0,255,255,255)
 End Function
 
 ;GET STAT COLOUR
@@ -1886,28 +1916,50 @@ End Function
 
 ;ASSIGN KEY PROCESS
 Function AssignKey(current)
- value=0
- While value=0
-  For v=0 To 255
-   If KeyDown(v)=1 And keytim=0 
-    If v<>0 And v<>1 And v<>28 And v<>25 Then value=v : screenCall=0 : PlaySound sMenuSelect : gotim=0 : keytim=10
-   EndIf
-  Next
-  If KeyDown(1) And keytim=0 Then value=current : screenCall=0 : PlaySound sMenuBack : go=0 : gotim=0 : keytim=15
- Wend
+ value=current
+ For v=0 To 255
+  If KeyDown(v)=1 And keytim=0
+   If v<>0 And v<>1 And v<>28 And v<>25 Then value=v : screenCall=0 : PlaySound sMenuSelect : gotim=0 : keytim=10
+  EndIf
+ Next
+ If KeyDown(1) And keytim=0 Then screenCall=0 : PlaySound sMenuBack : go=0 : gotim=0 : keytim=15
  Return value
 End Function
 
 ;ASSIGN BUTTON PROCESS
 Function AssignButton(current)
- value=28
- While value=28
-  For v=1 To 8
-   If JoyDown(v)=1 And keytim=0 Then value=v : screenCall=0 : PlaySound sMenuSelect : gotim=0 : keytim=10
-  Next
-  If KeyDown(1) And keytim=0 Then value=current : screenCall=0 : PlaySound sMenuBack : go=0 : gotim=0 : keytim=15
- Wend
+ value=current
+ For v=1 To 32
+  If JoyDown(v)=1 And keytim=0 Then value=v : screenCall=0 : PlaySound sMenuSelect : gotim=0 : keytim=10
+ Next
+ If KeyDown(1) And keytim=0 Then screenCall=0 : PlaySound sMenuBack : go=0 : gotim=0 : keytim=15
  Return value
+End Function
+
+;ASSIGN GAMEPAD DIRECTION PROCESS
+Function AssignPadDirection(current)
+ value=current
+ assigned=0
+ If JoyYDir()=-1 And keytim=0 Then value=PAD_AXIS_Y_NEG : assigned=1
+ If JoyYDir()=1 And keytim=0 Then value=PAD_AXIS_Y_POS : assigned=1
+ If JoyXDir()=-1 And keytim=0 Then value=PAD_AXIS_X_NEG : assigned=1
+ If JoyXDir()=1 And keytim=0 Then value=PAD_AXIS_X_POS : assigned=1
+ For v=1 To 32
+  If JoyDown(v)=1 And keytim=0 Then value=v : assigned=1
+ Next
+ If assigned=1 Then screenCall=0 : PlaySound sMenuSelect : gotim=0 : keytim=10
+ If KeyDown(1) And keytim=0 Then screenCall=0 : PlaySound sMenuBack : go=0 : gotim=0 : keytim=15
+ Return value
+End Function
+
+;DESCRIBE GAMEPAD DIRECTION BINDING
+Function PadDirectionName$(binding)
+ If binding>=1 And binding<=32 Then Return "Button "+binding
+ If binding=PAD_AXIS_Y_NEG Then Return "Y Axis -"
+ If binding=PAD_AXIS_Y_POS Then Return "Y Axis +"
+ If binding=PAD_AXIS_X_NEG Then Return "X Axis -"
+ If binding=PAD_AXIS_X_POS Then Return "X Axis +"
+ Return "Unassigned"
 End Function
 
 ;COUNT SELECTED CHARACTERS
@@ -2015,11 +2067,11 @@ Function ChangeResolution(resolution,task) ;0=pre-game, 1=during game
  ;assess preferences
  width=Int(textResX$(resolution))
  height=Int(textResY$(resolution))
- If GfxMode3DExists(width,height,16)=0 Then width=800 : height=600 : optGameRes=2 : optMenuRes=2
+ If GfxMode3DExists(width,height,32)=0 Then width=1920 : height=1080 : optGameRes=0 : optMenuRes=0
  ;make transition?
  If width<>GraphicsWidth() Or height<>GraphicsHeight()
   If task>0 Then Loader("Please Wait","Adjusting Resolution")
-  Graphics3D width,height,16,1
+  Graphics3D width,height,32,1
   If task>0 ;restore media
    LoadImages()
    Loader("Please Wait","Restoring Media")
