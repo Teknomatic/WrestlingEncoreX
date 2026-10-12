@@ -203,7 +203,7 @@ period=1000/FPS
 time=MilliSecs()-period
 ;MAIN LOOP
 firstWeekStep=160 : weekStep=100 : monthStep=460 
-scrollT=rX#(400)-(((gamMonth(slot)-1)*monthStep)+firstWeekStep+((gamWeek(slot)-1)*weekStep))
+scrollT=rX#(400)-(((gamMonth(slot)-1)*monthStep)+firstWeekStep)
 scroller=scrollT
 foc=1 : oldfoc=foc : screenAgenda=0
 go=0 : gotim=0 : keytim=10
@@ -260,7 +260,7 @@ While go=0
 	scrollTim=scrollTim-1
 	If scrollTim<1 Then scrollTim=0
 	If scrollTim=0 
-     scrollT=rX#(400)-(((gamMonth(slot)-1)*monthStep)+firstWeekStep+((gamWeek(slot)-1)*weekStep))
+     scrollT=rX#(400)-(((gamMonth(slot)-1)*monthStep)+firstWeekStep)
      If scroller<scrollT Then scroller=scroller+20
      If scroller>scrollT Then scroller=scroller-20
 	EndIf
