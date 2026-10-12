@@ -1738,18 +1738,18 @@ Function DrawProfile(char,x,y)
  If game=1 Then liner=charHealth(char) Else liner=100
  Color 0,130,0 : Rect x-100,y+15,liner*2,10,1
  Color 0,200,0 : Rect x-99,y+16,(liner*2)-2,6,1
- ;injury indication
- If game=1 And charInjured(char)>0
-  DrawImage gInjury,x-45,y+7
-  SetFont font(1)
-  If screen<>17 And screen<>18 Then Outline(charInjured(char),x-45,y+7,0,0,0,255,150,150)
- EndIf
  ;allegiance indicator
  SetFont font(2)
  placer=(StringWidth(charName$(char))/2)+5
  If placer<55 Then placer=55
  If placer>100 Then placer=100
  If game=1 And charInjured(char)>0 And placer<60 Then placer=60
+ ;injury indication
+ If game=1 And charInjured(char)>0
+  DrawImage gInjury,x-placer-5,y
+  SetFont font(1)
+  If screen<>17 And screen<>18 Then Outline(charInjured(char),x-placer-5,y,0,0,0,255,150,150)
+ EndIf
  DrawImage gHeel(charHeel(char)),x-placer-50,y
  ;photos & name line
  If charManager(char)>0 Then DrawImage charPhoto(charManager(char)),x-294,y+66
